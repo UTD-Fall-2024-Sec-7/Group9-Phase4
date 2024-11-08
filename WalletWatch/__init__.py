@@ -1,1 +1,2 @@
-__all__ = ["addTransaction.py", "controller.py", "databaseManager.py", "deleteTransaction.py", "main.py", "transaction.py", "viewHistory.py"]
+__all__ = ["addTransaction", "controller", "databaseManager", "deleteTransaction", "main",
+        "transaction", "viewHistory"]

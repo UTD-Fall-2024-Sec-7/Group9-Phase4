@@ -9,7 +9,7 @@ class AddTransactionView:
         ttk.Label(self.frame, text="Type:").grid(row=0, column=0, padx=5, pady=5)
         self.type_var = tk.StringVar()
         type_combo = ttk.Combobox(self.frame, textvariable=self.type_var, 
-                                 values=['savings', 'spending'])
+                                 values=['Savings', 'Spending'])
         type_combo.grid(row=0, column=1, padx=5, pady=5)
         
         ttk.Label(self.frame, text="Amount:").grid(row=0, column=2, padx=5, pady=5)
@@ -31,9 +31,11 @@ class AddTransactionView:
             amount = float(self.amount_var.get())
             description = self.desc_var.get()
             
-            if not type or amount <= 0:
-                messagebox.showerror("Error", "Please fill in all fields correctly")
-                return
+            amount_upper_limit = 1000000000
+
+            if not type or (amount <= 0 or amount > amount_upper_limit):
+                #messagebox.showerror("Error", "Please fill in all fields correctly")
+                raise ValueError
             
             self.controller.add_transaction(type, amount, description)
             messagebox.showinfo("Success", "Transaction added successfully!")

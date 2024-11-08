@@ -1,4 +1,4 @@
-from transaction import Transaction
+from .transaction import Transaction
 
 class TransactionController:
     def __init__(self, db_manager):
@@ -18,3 +18,6 @@ class TransactionController:
 
     def delete_transaction(self, to_be_deleted_transaction_id):
         self.db_manager.delete_transaction(to_be_deleted_transaction_id)
+
+    def get_transaction(self, transaction_id):
+        return self.db_manager.get_transaction(transaction_id)
