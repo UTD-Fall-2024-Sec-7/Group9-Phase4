@@ -10,9 +10,12 @@ class Transaction:
         self.date = date if date else datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 class DatabaseManager:
-    def __init__(self):
-        self.conn = sqlite3.connect('wallet_watch.db')
+
+    def __init__(self, dbFileName="wallet_watch.db"):
+        self.conn =sqlite3.connect(dbFileName)
         self.create_tables()
+
+    
     
     def create_tables(self):
         cursor = self.conn.cursor()
