@@ -31,8 +31,16 @@ class AddTransactionView:
             amount = float(self.amount_var.get())
             description = self.desc_var.get()
             
-            if not type or amount <= 0:
+            if not type or not amount or amount <= 0 or not description:
                 messagebox.showerror("Error", "Please fill in all fields correctly")
+                return
+
+            if amount > 9999999999999999:
+                messagebox.showerror("Error", "Amount exceeds 16-digit limit")
+                return
+
+            if len(description) > 100:
+                messagebox.showerror("Error", "Description exceeds 100 characters")
                 return
             
             self.controller.add_transaction(type, amount, description)
