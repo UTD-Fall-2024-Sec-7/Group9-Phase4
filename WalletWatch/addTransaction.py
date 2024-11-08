@@ -4,7 +4,7 @@ from tkinter import ttk, messagebox
 class AddTransactionView:
     def __init__(self, parent, controller):
         self.controller = controller
-        self.frame = ttk.LabelFrame(parent, text="Add Transaction", padding="10")
+        self.frame = ttk.LabelFrame(parent, text="Add Transaction", padding="1")
         
         ttk.Label(self.frame, text="Type:").grid(row=0, column=0, padx=5, pady=5)
         self.type_var = tk.StringVar()

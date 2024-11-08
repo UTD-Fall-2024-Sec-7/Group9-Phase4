@@ -40,3 +40,14 @@ class DatabaseManager:
         cursor = self.conn.cursor()
         cursor.execute('SELECT * FROM transactions ORDER BY date DESC')
         return cursor.fetchall()
+
+    
+    def delete_transaction(self, transaction):
+        cursor = self.conn.cursor()
+
+        command = f"DELETE FROM transactions WHERE id = {transaction}"
+
+        cursor.execute(command)
+        self.conn.commit()
+
+

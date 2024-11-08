@@ -32,6 +32,7 @@ class WalletWatchApp:
 
 def main():
     root = tk.Tk()
+    #what is the point of app? it is never used
     app = WalletWatchApp(root)
     root.mainloop()
 

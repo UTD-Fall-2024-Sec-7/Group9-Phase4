@@ -15,3 +15,6 @@ class TransactionController:
     def refresh_transaction_list(self):
         if hasattr(self, 'view_history_view'):
             self.view_history_view.refresh_transactions()
+
+    def delete_transaction(self, to_be_deleted_transaction_id):
+        self.db_manager.delete_transaction(to_be_deleted_transaction_id)
