@@ -1,0 +1,6 @@
+For Flask:
+- Implement user registration and login
+    - Create database to store credentials
+    - Authenticate user
+- Have a forgot password function
+    - use flask mail
