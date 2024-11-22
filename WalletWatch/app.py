@@ -19,44 +19,6 @@ def index():
     return render_template('index.html', transactions=transactions)
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        user = db_manager.get_user(username)
-
-        if user and check_password_hash(user[2], password):
-            session['user_id'] = user[0]
-            flash('Logged in successfully!', 'success')
-            return redirect(url_for('index'))
-        else:
-            flash('Invalid username or password', 'error')
-
-    return render_template('login.html')
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        hashed_password = generate_password_hash(password)
-
-        if db_manager.add_user(username, hashed_password):
-            flash('Registration successful! Please log in.', 'success')
-            return redirect(url_for('login'))
-        else:
-            flash('Username already exists', 'error')
-
-    return render_template('register.html')
-
-@app.route('/logout')
-def logout():
-    session.pop('user_id', None)
-    flash('You have been logged out', 'success')
-    return redirect(url_for('login'))
-
-
 @app.route('/add_transaction', methods = ['GET', 'POST'])
 def add_transaction():
     if request.method == 'POST':
@@ -76,6 +38,12 @@ def add_transaction():
             return redirect(url_for('index'))
 
     return render_template('transactions.html')
+
+@app.route('/delete_transaction/<int:transaction_id>', methods=['POST'])
+def delete_transaction(transaction_id):
+    controller.delete_transaction(transaction_id)
+    flash('Transaction deleted successfully!', 'success')
+    return redirect(url_for('index'))
 
 
 # main driver function
