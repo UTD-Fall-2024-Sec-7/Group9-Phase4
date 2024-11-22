@@ -4,3 +4,9 @@ For Flask:
     - Authenticate user
 - Have a forgot password function
     - use flask mail
+
+TODO:
+- convert flask app to work with react by serving as an API
+    - remove template rendering (no need for /template (HTML) and /static (css))
+    - jsonify for responses
+    - handle CORS
