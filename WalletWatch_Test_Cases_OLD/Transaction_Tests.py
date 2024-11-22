@@ -1,5 +1,5 @@
 import pytest
-import WalletWatch
+import WalletWatch_backend
 
 class TransactionTest:
 

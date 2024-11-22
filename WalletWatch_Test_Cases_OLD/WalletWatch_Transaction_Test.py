@@ -1,7 +1,7 @@
 import pytest
 from tkinter import Tk
 from unittest.mock import MagicMock, patch
-from WalletWatch.addTransaction import AddTransactionView
+from WalletWatch_backend.addTransaction import AddTransactionView
 
 
 @pytest.fixture
