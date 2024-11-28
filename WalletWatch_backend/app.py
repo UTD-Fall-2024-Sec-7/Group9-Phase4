@@ -1,14 +1,12 @@
 from flask import Flask, jsonify, request, url_for
 from flask_cors import CORS
-from flask_mail import Mail, Message
+from flask_mail import Mail
 from itsdangerous import URLSafeTimedSerializer
 from werkzeug.security import generate_password_hash, check_password_hash
 from databaseManager import DatabaseManager
 from controller import TransactionController
 from transaction import Transaction
-
-db_manager = DatabaseManager()
-controller = TransactionController(db_manager)
+from emails import EmailManager
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -16,10 +14,14 @@ CORS(app)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = 'example@gmail.com'
-app.config['MAIL_PASSWORD'] = '<password>'
+app.config['MAIL_USERNAME'] = 'thetrios2mc@gmail.com'
+app.config['MAIL_PASSWORD'] = 'rjpv zfks xnkv nrvv'
 mail = Mail(app)
 s = URLSafeTimedSerializer('12345')
+
+db_manager = DatabaseManager()
+controller = TransactionController(db_manager)
+email_manager = EmailManager(app, mail)
 
 
 @app.route('/')
@@ -52,47 +54,43 @@ def login():
 @app.route('/api/forgotPassword', methods=['POST'])
 def forgot_password():
     email = request.json['email']
+    print(email)
     user = db_manager.get_user(email)
     if user:
         # generate reset token
         token = s.dumps(email, salt='password-reset-salt')
         # send email with reset token
-        reset_link = url_for('forgot_password', token=token, _external=True)
-
-        msg = Message()
-        msg.subject = 'Password reset for WalletWatch.com'
-        msg.recipients = email
-        msg.sender = 'example@gmail.com'
-        msg.body = reset_link
-
-        mail.send(msg)
-
+        reset_link = url_for('password_reset', token=token, _external=True)
+        email_manager.send_pass_reset_email(email, reset_link)
         return jsonify({'message': 'Password reset email sent'}), 200
-
     else:
         return jsonify({'error': 'Email not found'}), 404
 
 
-@app.route('/api/passwordReset/<token>', methods=['POST'])
+@app.route('/api/passwordReset/<token>', methods=['GET', 'POST'])
 def password_reset(token):
     try:
-        email = s.loads(token, salt='password-reset-salt', max_age=3600) # token expires after 1 hour
+        email = s.loads(token, salt='password-reset-salt', max_age=3600)  # token expires after 1 hour
     except:
         return jsonify({'error': 'Invalid or expired token'}), 400
 
-    # password reset logic
-    new_password = request.json['password']
-    hashed_password = generate_password_hash(new_password)
-    if db_manager.change_user_password(email, hashed_password):
-        return jsonify({'message': 'Password reset successful'}), 200
-    else:
-        return jsonify({'error': 'Password reset failed'}), 400
+    if request.method == 'GET':
+        return jsonify({'message': 'Token is valid'}), 200
+
+    elif request.method == 'POST':
+        # password reset logic
+        new_password = request.json['password']
+        hashed_password = generate_password_hash(new_password)
+        if db_manager.change_user_password(email, hashed_password):
+            return jsonify({'message': 'Password reset successful'}), 200
+        else:
+            return jsonify({'error': 'Password reset failed'}), 400
 
 
 @app.route('/api/transactions', methods=['GET'])
 def index():
     transactions = controller.get_transaction_history()
-    return jsonify(transactions)
+    return jsonify(transactions), 200
 
 
 @app.route('/api/transactions', methods=['POST'])
