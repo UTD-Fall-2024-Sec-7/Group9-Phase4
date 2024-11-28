@@ -1,6 +1,7 @@
 import sqlite3
 from datetime import datetime
 
+
 class DatabaseManager:
     def __init__(self, dbFileName="wallet_watch.db"):
         self.conn = sqlite3.connect(dbFileName, check_same_thread=False)
@@ -20,25 +21,31 @@ class DatabaseManager:
         cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT UNIQUE NOT NULL,
+            email TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL
         )
         ''')
         self.conn.commit()
 
-    def add_user(self, username, password):
+    def add_user(self, email, password):
         cursor = self.conn.cursor()
         try:
-            cursor.execute('INSERT INTO users (username, password) VALUES (?. ?)', (username, password))
+            cursor.execute('INSERT INTO users (email, password) VALUES (?, ?)', (email, password))
             self.conn.commit()
             return True
         except sqlite3.IntegrityError:
             return False
 
-    def get_user(self, username):
+    def get_user(self, email):
         cursor = self.conn.cursor()
-        cursor.execute('SELECT * FROM users WHERE username = ?', (username,))
+        cursor.execute('SELECT * FROM users WHERE email = ?', (email,))
         return cursor.fetchone()
+
+    def change_user_password(self, email, new_password):
+        cursor = self.conn.cursor()
+        cursor.execute('UPDATE users SET password = ? WHERE email = ?', (new_password, email))
+        self.conn.commit()
+        return cursor.rowcount > 0
 
     def add_transaction(self, transaction):
         cursor = self.conn.cursor()
