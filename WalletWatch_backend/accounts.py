@@ -2,6 +2,13 @@ from flask_mail import Message
 from threading import Thread
 
 
+class Account:
+    def __init__(self, user_id=None, email=None, password=None):
+        self.user_id = user_id
+        self.email = email
+        self.password = password
+
+
 class EmailManager:
     def __init__(self, app, mail):
         self.app = app

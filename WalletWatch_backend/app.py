@@ -4,9 +4,8 @@ from flask_mail import Mail
 from itsdangerous import URLSafeTimedSerializer
 from werkzeug.security import generate_password_hash, check_password_hash
 from databaseManager import DatabaseManager
-from controller import TransactionController
-from transaction import Transaction
-from emails import EmailManager
+from controller import AccountController, TransactionController, BudgetController
+from accounts import EmailManager
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -20,7 +19,9 @@ mail = Mail(app)
 s = URLSafeTimedSerializer('12345')
 
 db_manager = DatabaseManager()
-controller = TransactionController(db_manager)
+a_controller = AccountController(db_manager)
+t_controller = TransactionController(db_manager)
+b_controller = BudgetController(db_manager)
 email_manager = EmailManager(app, mail)
 
 
@@ -34,10 +35,11 @@ def register_user():
     email = request.json['email']
     password = request.json['password']
     hashed_password = generate_password_hash(password)
-    if db_manager.add_user(email, hashed_password):
-        return jsonify({'message': 'Registration Success'}), 200
-    else:
+    user_id = a_controller.add_user(email, hashed_password)
+    if not user_id:
         return jsonify(({'error': 'email already exists'})), 400
+    else:
+        return jsonify({'message': 'Registration Success', 'id': user_id}), 200
 
 
 @app.route('/api/login', methods=['POST'])
@@ -45,6 +47,7 @@ def login():
     email = request.json['email']
     password = request.json['password']
     user = db_manager.get_user(email)
+    # index 2 means the second parameter (password) in user object from the database
     if user and check_password_hash(user[2], password):
         return jsonify({'message': 'Login successful'}), 200
     else:
@@ -54,7 +57,6 @@ def login():
 @app.route('/api/forgotPassword', methods=['POST'])
 def forgot_password():
     email = request.json['email']
-    print(email)
     user = db_manager.get_user(email)
     if user:
         # generate reset token
@@ -81,7 +83,7 @@ def password_reset(token):
         # password reset logic
         new_password = request.json['password']
         hashed_password = generate_password_hash(new_password)
-        if db_manager.change_user_password(email, hashed_password):
+        if a_controller.set_password(email, hashed_password):
             return jsonify({'message': 'Password reset successful'}), 200
         else:
             return jsonify({'error': 'Password reset failed'}), 400
@@ -89,32 +91,75 @@ def password_reset(token):
 
 @app.route('/api/transactions', methods=['GET'])
 def index():
-    transactions = controller.get_transaction_history()
+    transactions = t_controller.get_transaction_history()
     return jsonify(transactions), 200
 
 
 @app.route('/api/transactions', methods=['POST'])
 def add_transaction():
-    data = request.json
-    transaction_type = data.get['type']
-    amount = float(data.get['amount'])
-    description = data.get['description']
+    transaction_type = request.json['type']
+    amount = float(request.json['amount'])
+    description = request.json['description']
+    tag = request.json['tag']
 
-    if not transaction_type or amount <= 0 or not description:
+    if not transaction_type or amount <= 0 or not tag:
         return jsonify({'error': 'Please fill in all fields correctly'}), 400
     elif amount > 9999999999999999:
         return jsonify({'error': 'Amount exceeds 16-digit limit'}), 400
     elif len(description) > 100:
         return jsonify({'error': 'Description exceeds 100 characters'}), 400
     else:
-        transaction_id = controller.add_transaction(transaction_type, amount, description)
+        transaction_id = t_controller.add_transaction(transaction_type, amount, description, tag)
         return jsonify({'message': 'Transaction added successfully!', 'id': transaction_id}), 201
 
 
 @app.route('/api/transactions/<int:transaction_id>', methods=['DELETE'])
 def delete_transaction(transaction_id):
-    controller.delete_transaction(transaction_id)
-    return jsonify({'message': 'Transaction deleted successfully!'}), 200
+    if t_controller.delete_transaction(transaction_id):
+        return jsonify({'message': 'Transaction deleted successfully!'}), 200
+    else:
+        return jsonify({'error': 'Transaction deletion FAILED'}), 404
+
+
+@app.route('/api/filterTransactions/<filer_type>', methods=['GET'])
+def filter_transaction(filter_type):
+    t_controller.filter_transaction(filter_type)
+    return jsonify({'message': 'Transaction filtered successfully!'}), 200
+
+
+@app.route('/api/budgets', methods=['POST'])
+def add_budget():
+    name = request.json['name']
+    budget_type = request.json['type']
+    budget_limit = float(request.json['budgetLimit'])
+    tag = request.json['tag']
+
+    if not name or budget_limit <= 0 or not tag:
+        return jsonify({'error': 'Please fill in all fields correctly'}), 400
+
+    budget_id = b_controller.add_budget(budget_type, name, budget_limit, tag)
+    return jsonify({'message': 'Budget added successfully!', 'id': budget_id}), 201
+
+
+@app.route('/api/budgets/<int:budget_id>', methods=['PUT'])
+def edit_budget(budget_id):
+    name = request.json['name']
+    budget_type = request.json['type']
+    budget_limit = float(request.json['budgetLimit'])
+    tag = request.json['tag']
+
+    if b_controller.edit_budget(budget_id, budget_type, name, budget_limit, tag):
+        return jsonify({'message': 'Budget updated successfully!'}), 200
+    else:
+        return jsonify({'error': 'Budget update FAILED'}), 404
+
+
+@app.route('/api/budgets/<int:budget_id>', methods=['DELETE'])
+def delete_budget(budget_id):
+    if b_controller.delete_budget(budget_id):
+        return jsonify({'message': 'Budget deleted successfully!'}), 200
+    else:
+        return jsonify({'error': 'Budget deletion FAILED'}), 404
 
 
 # main driver function
