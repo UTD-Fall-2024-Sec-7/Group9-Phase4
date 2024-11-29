@@ -32,11 +32,15 @@ def home():
 @app.route('/@me')
 def get_cur_user():
     user_id = session.get('user_id')
-
     if not user_id:
         return jsonify({"error": "Unauthorized"}), 401
 
-    return user_id, 200
+    email = a_controller.get_email(user_id)
+
+    return jsonify({
+        "user_id": user_id,
+        "email": email
+    }), 200
 
 
 @app.route('/api/createAccount', methods=['POST'])

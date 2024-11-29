@@ -56,6 +56,12 @@ class DatabaseManager:
         cursor.execute('SELECT * FROM users WHERE email = ?', (email,))
         return cursor.fetchone()
 
+    def get_email(self, user_id):
+        cursor = self.conn.cursor()
+        cursor.execute('SELECT * FROM users WHERE id = ?', (user_id,))
+        result = cursor.fetchone()
+        return result[1] if result else None
+
     def set_password(self, email, new_password):
         cursor = self.conn.cursor()
         cursor.execute('UPDATE users SET password = ? WHERE email = ?', (new_password, email))

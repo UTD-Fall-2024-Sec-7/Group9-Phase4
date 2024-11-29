@@ -16,6 +16,10 @@ class AccountController:
         status = self.db_manager.get_user(email)
         return status
 
+    def get_email(self, user_id):
+        status = self.db_manager.get_email(user_id)
+        return status
+
     def set_password(self, email, password):
         status = self.db_manager.set_password(email, password)
         return status
