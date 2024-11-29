@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c2c0db6-d2df-4151-bd25-d37121d64137" name="Changes" comment="Added get_email" />
+    <list default="true" id="3c2c0db6-d2df-4151-bd25-d37121d64137" name="Changes" comment="Server instructions">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletWatch_backend/accounts.py" beforeDir="false" afterPath="$PROJECT_DIR$/WalletWatch_backend/accounts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletWatch_backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/WalletWatch_backend/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletWatch_backend/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/WalletWatch_backend/controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletWatch_backend/databaseManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/WalletWatch_backend/databaseManager.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -142,6 +149,8 @@
       <workItem from="1732802337997" duration="8172000" />
       <workItem from="1732864475100" duration="11916000" />
       <workItem from="1732876425804" duration="9708000" />
+      <workItem from="1732886933230" duration="408000" />
+      <workItem from="1732899716593" duration="1484000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented email password reset">
       <created>1732810924438</created>
@@ -171,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732886113931</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Server instructions">
+      <created>1732887283583</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732887283583</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,7 +198,8 @@
     <MESSAGE value="Added Budget class and organized code" />
     <MESSAGE value="Overhauled database and added serverside session support" />
     <MESSAGE value="Added get_email" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added get_email" />
+    <MESSAGE value="Server instructions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Server instructions" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Group9_Phase4$Group9_Phase1.coverage" NAME="Group9-Final_Project Coverage Results" MODIFIED="1732767513760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

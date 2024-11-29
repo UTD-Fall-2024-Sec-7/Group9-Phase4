@@ -24,6 +24,7 @@ t_controller = TransactionController(db_manager)
 b_controller = BudgetController(db_manager)
 email_manager = EmailManager(app, mail)
 
+
 @app.route('/')
 def home():
     return {"message": "Welcome to WalletWatch"}
@@ -189,6 +190,9 @@ def add_budget():
         return jsonify({'error': 'Please fill in all fields correctly'}), 400
 
     budget_id = b_controller.add_budget(budget_type, name, budget_limit, tag, user_id)
+    if not budget_id:
+        return jsonify({'error': f'Budget with the tag {tag} already exists'}), 409
+
     return jsonify({'message': 'Budget added successfully!', 'id': budget_id}), 201
 
 

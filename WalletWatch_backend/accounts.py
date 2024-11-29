@@ -3,10 +3,13 @@ from threading import Thread
 
 
 class Account:
-    def __init__(self, user_id=None, email=None, password=None):
+    def __init__(self, user_id=None, email=None, password=None, firstName=None, lastName=None, income=None):
         self.user_id = user_id
         self.email = email
         self.password = password
+        self.firstName = firstName
+        self.lastName = lastName
+        self.income = income
 
 
 class EmailManager:

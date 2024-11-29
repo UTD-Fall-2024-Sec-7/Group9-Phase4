@@ -13,7 +13,10 @@ class DatabaseManager:
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             email TEXT UNIQUE NOT NULL,
-            password TEXT NOT NULL
+            password TEXT NOT NULL,
+            firstName TEXT NOT NULL,
+            lastName TEXT NOT NULL,
+            income TEXT NOT NULL
         )
         ''')
         self.conn.commit()
@@ -37,7 +40,7 @@ class DatabaseManager:
             type TEXT NOT NULL,
             budgetLimit REAL NOT NULL,
             remainingBudget REAL,
-            tag TEXT NOT NULL
+            tag TEXT UNIQUE NOT NULL
         )
         ''')
         self.conn.commit()
@@ -45,9 +48,11 @@ class DatabaseManager:
     def add_user(self, user):
         cursor = self.conn.cursor()
         try:
-            cursor.execute('INSERT INTO users (email, password) VALUES (?, ?)', (user.email, user.password))
+            cursor.execute('INSERT INTO users (email, password, firstName, lastName, income) '
+                           'VALUES (?, ?, ?, ?, ?)', (user.email, user.password))
             self.conn.commit()
             return cursor.lastrowid
+
         except sqlite3.IntegrityError:
             return False
 
@@ -94,12 +99,16 @@ class DatabaseManager:
 
     def add_budget(self, budget, user_id):
         cursor = self.conn.cursor()
-        cursor.execute(f'''
-        INSERT INTO budgets_{user_id} (name, type, budgetLimit, remainingBudget, tag)
-        VALUES (?, ?, ?, ?, ?)
-        ''', (budget.name, budget.type, budget.budgetLimit, budget.budgetLimit, budget.tag))
-        self.conn.commit()
-        return cursor.lastrowid
+        try:
+            cursor.execute(f'''
+            INSERT INTO budgets_{user_id} (name, type, budgetLimit, remainingBudget, tag)
+            VALUES (?, ?, ?, ?, ?)
+            ''', (budget.name, budget.type, budget.budgetLimit, budget.budgetLimit, budget.tag))
+            self.conn.commit()
+            return cursor.lastrowid
+
+        except sqlite3.IntegrityError:
+            return False
 
     def edit_budget(self, budget, user_id):
         cursor = self.conn.cursor()

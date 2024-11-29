@@ -7,8 +7,8 @@ class AccountController:
     def __init__(self, db_manager):
         self.db_manager = db_manager
 
-    def add_user(self, email, password):
-        user = Account(email=email, password=password)
+    def add_user(self, email, password, firstName, lastName, income):
+        user = Account(email=email, password=password, firstName=firstName, lastName=lastName, income=income)
         user_id = self.db_manager.add_user(user)
         return user_id
 
