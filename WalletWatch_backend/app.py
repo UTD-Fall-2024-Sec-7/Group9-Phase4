@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request, url_for, session
 from flask_cors import CORS
 from flask_mail import Mail
-from flask_session import Session
 from itsdangerous import URLSafeTimedSerializer
 from werkzeug.security import generate_password_hash, check_password_hash
 from databaseManager import DatabaseManager
@@ -14,7 +13,6 @@ app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
 
 CORS(app)
-server_session = Session(app)
 mail = Mail(app)
 s = URLSafeTimedSerializer('SecureAuth')
 

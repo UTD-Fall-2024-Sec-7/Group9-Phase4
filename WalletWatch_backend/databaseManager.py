@@ -49,7 +49,8 @@ class DatabaseManager:
         cursor = self.conn.cursor()
         try:
             cursor.execute('INSERT INTO users (email, password, firstName, lastName, income) '
-                           'VALUES (?, ?, ?, ?, ?)', (user.email, user.password))
+                           'VALUES (?, ?, ?, ?, ?)',
+                           (user.email, user.password, user.firstName, user.lastName, user.income))
             self.conn.commit()
             return cursor.lastrowid
 
