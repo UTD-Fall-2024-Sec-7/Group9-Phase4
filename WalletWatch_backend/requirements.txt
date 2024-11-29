@@ -1,12 +1,7 @@
-For Flask:
-- Implement user registration and login
-    - Create database to store credentials
-    - Authenticate user
-- Have a forgot password function
-    - use flask mail
-
-TODO:
-- convert flask app to work with react by serving as an API
-    - remove template rendering (no need for /template (HTML) and /static (css))
-    - jsonify for responses
-    - handle CORS
+Flask
+Flask-CORS
+Flask-Mail
+Flask-Session
+itsdangerous
+Werkzeug
+python-dotenv

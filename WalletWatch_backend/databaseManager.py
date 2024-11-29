@@ -10,7 +10,18 @@ class DatabaseManager:
     def create_tables(self):
         cursor = self.conn.cursor()
         cursor.execute('''
-        CREATE TABLE IF NOT EXISTS transactions (
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL
+        )
+        ''')
+        self.conn.commit()
+
+    def create_user_tables(self, user_id):
+        cursor = self.conn.cursor()
+        cursor.execute(f'''
+        CREATE TABLE IF NOT EXISTS transactions_{user_id} (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             type TEXT NOT NULL,
             amount REAL NOT NULL,
@@ -19,21 +30,14 @@ class DatabaseManager:
             tag TEXT NOT NULL
         )
         ''')
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS budgets (
+        cursor.execute(f'''
+        CREATE TABLE IF NOT EXISTS budgets_{user_id} (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
             type TEXT NOT NULL,
             budgetLimit REAL NOT NULL,
             remainingBudget REAL,
             tag TEXT NOT NULL
-        )
-        ''')
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email TEXT UNIQUE NOT NULL,
-            password TEXT NOT NULL
         )
         ''')
         self.conn.commit()
@@ -49,7 +53,7 @@ class DatabaseManager:
 
     def get_user(self, email):
         cursor = self.conn.cursor()
-        cursor.execute('SELECT * FROM users WHERE email = ?', email)
+        cursor.execute('SELECT * FROM users WHERE email = ?', (email,))
         return cursor.fetchone()
 
     def set_password(self, email, new_password):
@@ -58,58 +62,58 @@ class DatabaseManager:
         self.conn.commit()
         return cursor.rowcount > 0
 
-    def add_transaction(self, transaction):
+    def add_transaction(self, transaction, user_id):
         cursor = self.conn.cursor()
-        cursor.execute('''
-        INSERT INTO transactions (type, amount, description, date, tag)
+        cursor.execute(f'''
+        INSERT INTO transactions_{user_id} (type, amount, description, date, tag)
         VALUES (?, ?, ?, ?, ?)
         ''', (transaction.type, transaction.amount, transaction.description, transaction.date, transaction.tag))
         self.conn.commit()
         return cursor.lastrowid
 
-    def get_all_transactions(self):
+    def get_all_transactions(self, user_id):
         cursor = self.conn.cursor()
-        cursor.execute('SELECT * FROM transactions ORDER BY date DESC')
+        cursor.execute(f'SELECT * FROM transactions_{user_id} ORDER BY date DESC')
         return cursor.fetchall()
 
-    def delete_transaction(self, transaction_id):
+    def delete_transaction(self, transaction_id, user_id):
         cursor = self.conn.cursor()
-        cursor.execute('DELETE FROM transactions WHERE id = ?', transaction_id)
+        cursor.execute(f'DELETE FROM transactions_{user_id} WHERE id = ?', (transaction_id,))
         self.conn.commit()
         return cursor.rowcount > 0
 
-    def filter_transaction(self, filter_type):
+    def filter_transaction(self, filter_type, user_id):
         cursor = self.conn.cursor()
-        cursor.execute('SELECT * FROM transactions ORDER BY ? DESC', filter_type)
+        cursor.execute(f'SELECT * FROM transactions_{user_id} ORDER BY ? DESC', (filter_type,))
 
-    def add_budget(self, budget):
+    def add_budget(self, budget, user_id):
         cursor = self.conn.cursor()
-        cursor.execute('''
-        INSERT INTO budgets (name, type, budgetLimit, remainingBudget, tag)
+        cursor.execute(f'''
+        INSERT INTO budgets_{user_id} (name, type, budgetLimit, remainingBudget, tag)
         VALUES (?, ?, ?, ?, ?)
         ''', (budget.name, budget.type, budget.budgetLimit, budget.budgetLimit, budget.tag))
         self.conn.commit()
         return cursor.lastrowid
 
-    def edit_budget(self, budget):
+    def edit_budget(self, budget, user_id):
         cursor = self.conn.cursor()
-        cursor.execute('''
-        UPDATE budgets
+        cursor.execute(f'''
+        UPDATE budgets_{user_id}
         SET type = ?, name = ?, budgetLimit = ?, tag = ?
         WHERE id = ?
         ''', (budget.type, budget.name, budget.budgetLimit, budget.tag, budget.budget_id))
         self.conn.commit()
         return cursor.rowcount > 0
 
-    def delete_budget(self, budget_id):
+    def delete_budget(self, budget_id, user_id):
         cursor = self.conn.cursor()
-        cursor.execute('DELETE FROM budgets WHERE id = ?', budget_id)
+        cursor.execute(f'DELETE FROM budgets_{user_id} WHERE id = ?', (budget_id,))
         self.conn.commit()
         return cursor.rowcount > 0
 
-    def get_all_budgets(self):
+    def get_all_budgets(self, user_id):
         cursor = self.conn.cursor()
-        cursor.execute('SELECT * FROM budgets')
+        cursor.execute(f'SELECT * FROM budgets_{user_id}')
         return cursor.fetchall()
 
     # def update_budget_remaining(self, type, name, amount):
