@@ -53,7 +53,7 @@ function CreateAccount() {
     <Link to="/"><Button style ={{color: 'white', backgroundColor:'black', height:50}}>
         <p>Back</p>
      </Button></Link>
-     <Link to="/"><Button style ={{color: 'white', backgroundColor:'black', height:50}}>
+     <Link to="/Dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:50}}>
         <p>Submit</p>
      </Button></Link>
                  </Stack>
