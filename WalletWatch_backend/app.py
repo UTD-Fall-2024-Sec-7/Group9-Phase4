@@ -48,9 +48,12 @@ def get_cur_user():
 def register_user():
     email = request.json['email']
     password = request.json['password']
+    firstName = request.json['firstName']
+    lastName = request.json['lastName']
+    income = request.json['income']
 
     hashed_password = generate_password_hash(password)
-    user_id = a_controller.add_user(email, hashed_password)
+    user_id = a_controller.add_user(email, hashed_password, firstName, lastName, income)
 
     if not user_id:
         return jsonify(({'error': 'email already exists'})), 409
