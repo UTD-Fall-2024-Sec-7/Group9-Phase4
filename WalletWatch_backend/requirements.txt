@@ -1,7 +1,6 @@
 Flask
 Flask-CORS
 Flask-Mail
-Flask-Session
 itsdangerous
 Werkzeug
 python-dotenv
