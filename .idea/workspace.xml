@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c2c0db6-d2df-4151-bd25-d37121d64137" name="Changes" comment="Fixed name bug">
+    <list default="true" id="3c2c0db6-d2df-4151-bd25-d37121d64137" name="Changes" comment="Fixed more bugs">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WalletWatch_backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/WalletWatch_backend/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletWatch_backend/databaseManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/WalletWatch_backend/databaseManager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +67,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Flask server.Flask (WalletWatch_backend/app.py)">
+  <component name="RunManager" selected="Python.python app.py">
     <configuration name="Group9-Final_Project" type="PythonConfigurationType" factoryName="Python">
       <module name="Group9-Phase1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -104,6 +105,29 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/WalletWatch_backend/databaseManager.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="python app.py" type="PythonConfigurationType" factoryName="Python">
+      <module name="Group9-Phase1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/WalletWatch_backend/venv/Scripts/python.exe" />
+      <option name="SDK_NAME" value="Python 3.11 (WalletWatch Project)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -150,7 +174,7 @@
       <workItem from="1732864475100" duration="11916000" />
       <workItem from="1732876425804" duration="9708000" />
       <workItem from="1732886933230" duration="408000" />
-      <workItem from="1732899716593" duration="7887000" />
+      <workItem from="1732899716593" duration="9232000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented email password reset">
       <created>1732810924438</created>
@@ -201,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732901863478</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed more bugs">
+      <created>1732909184620</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732909184620</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,11 +246,13 @@
     <MESSAGE value="Server instructions" />
     <MESSAGE value="Updated users" />
     <MESSAGE value="Fixed name bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed name bug" />
+    <MESSAGE value="Fixed more bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed more bugs" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Group9_Phase4$Group9_Phase1.coverage" NAME="Group9-Final_Project Coverage Results" MODIFIED="1732767513760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Group9_Phase4$Flask__WalletWatch_backend_app_py_.coverage" NAME="Flask (WalletWatch_backend/app.py) Coverage Results" MODIFIED="1732904211749" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Group9_Phase4$python_app_py.coverage" NAME="python app.py Coverage Results" MODIFIED="1732909723292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Group9_Phase4$Group9_Final_Project.coverage" NAME="Group9-Final_Project Coverage Results" MODIFIED="1732811707327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Group9_Phase4$databaseManager.coverage" NAME="databaseManager Coverage Results" MODIFIED="1732864618574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/WalletWatch_backend" />
     <SUITE FILE_PATH="coverage/Group9_Phase4$app.coverage" NAME="app Coverage Results" MODIFIED="1732766339528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/WalletWatch_backend" />

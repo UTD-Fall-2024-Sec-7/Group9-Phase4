@@ -3,9 +3,12 @@
 To run flask server:
 
 ```
- pip install -r requirements.txt
+cd WalletWatch_backend
 ```
 ```
-python WalletWatch_backend/app.py
+pip install -r requirements.txt
+```
+```
+python app.py
 ```
 

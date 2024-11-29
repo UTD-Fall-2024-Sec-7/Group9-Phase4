@@ -35,10 +35,14 @@ def get_cur_user():
         return jsonify({"error": "Unauthorized"}), 401
 
     email = a_controller.get_email(user_id)
+    user = a_controller.get_user(email)
 
     return jsonify({
         "user_id": user_id,
-        "email": email
+        "email": email,
+        "firstName": user[3],
+        "lastName": user[4],
+        "income": user[5],
     }), 200
 
 
