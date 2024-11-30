@@ -29,11 +29,13 @@ function AddBudgets() {
                 }),
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                throw new Error('Failed to add budget');
+                alert(data.error);
+                return;
             }
 
-            const data = await response.json();
             console.log(data);
             navigate('/viewBudgets');
         } catch (error) {
