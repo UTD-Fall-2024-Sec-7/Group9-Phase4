@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import './Home.css';
@@ -7,6 +7,23 @@ import Stack from '@mui/material/Stack';
 
 
 function Dashboard() {
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        fetchName();
+    }, []);
+
+    const fetchName = async () => {
+        try {
+            const response = await fetch('/api/@me');
+
+            const data = await response.json();
+            setUser(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div classname = "Dashboard">
             <header classname = "header" >
@@ -19,12 +36,12 @@ function Dashboard() {
        </Button>
        
             <h1> WalletWatch</h1>
-<Link to="/dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:30}}>
-        <p>Home</p>
+<Link to="/login"><Button style ={{color: 'white', backgroundColor:'black', height:30}}>
+        <p>Logout</p>
      </Button></Link>
             </Stack>
      </header>
-     <h2 style={{ textAlign: 'center' }}> Welcome!</h2>
+     <h2 style={{ textAlign: 'center' }}> Welcome {user.firstName}!</h2>
      <p style={{ textAlign: 'center' }}>
     <h3 style={{textAlign:'center'}}> What would you like to do today?</h3>
         </p>

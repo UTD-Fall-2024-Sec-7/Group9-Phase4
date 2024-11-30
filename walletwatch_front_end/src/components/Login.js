@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -9,6 +9,26 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        logoutUser();
+    }, []);
+
+    const logoutUser = async (e) => {
+        try {
+            const response = await fetch('/api/logout')
+            const data = await response.json();
+            if (!response.ok) {
+                alert(data.error);
+                return;
+            }
+            console.log(data);
+            navigate('/login');
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred during login. Please try again.');
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();

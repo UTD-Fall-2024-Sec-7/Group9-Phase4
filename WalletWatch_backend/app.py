@@ -29,7 +29,7 @@ def home():
     return {"message": "Welcome to WalletWatch"}
 
 
-@app.route('/@me')
+@app.route('/api/@me')
 def get_cur_user():
     user_id = session.get('user_id')
     if not user_id:
@@ -60,8 +60,10 @@ def register_user():
 
     if not user_id:
         return jsonify(({'error': 'email already exists'})), 409
-    else:
-        return jsonify({'message': 'Registration Success', 'id': user_id}), 200
+
+    session['user_id'] = user_id
+    db_manager.create_user_tables(user_id)
+    return jsonify({'message': 'Registration Success', 'id': user_id}), 200
 
 
 @app.route('/api/login', methods=['POST'])
@@ -77,7 +79,6 @@ def login():
         return jsonify({'error': 'Incorrect password'}), 401
 
     session['user_id'] = user[0]
-
     db_manager.create_user_tables(user[0])
     return jsonify({'message': 'Login successful', 'id': user[0]}), 200
 
@@ -256,7 +257,7 @@ def delete_budget(budget_id):
         return jsonify({'error': 'Budget deletion FAILED'}), 404
 
 
-@app.route('/api/logout', methods=['POST'])
+@app.route('/api/logout', methods=['GET'])
 def logout():
     session.pop('user_id', None)
     return jsonify({'message': 'Logged out successfully'}), 200
