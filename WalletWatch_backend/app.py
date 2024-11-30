@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, url_for, session
+from flask import Flask, jsonify, request, url_for, session, flash, render_template
 from flask_cors import CORS
 from flask_mail import Mail
 from itsdangerous import URLSafeTimedSerializer
@@ -7,6 +7,7 @@ from databaseManager import DatabaseManager
 from controller import AccountController, TransactionController, BudgetController
 from accounts import EmailManager
 from config import ApplicationConfig
+from resetPassword import ResetPasswordForm
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -103,17 +104,29 @@ def password_reset(token):
     except:
         return jsonify({'error': 'Invalid or expired token'}), 400
 
-    if request.method == 'GET':
-        return jsonify({'message': 'Token is valid'}), 200
+    form = ResetPasswordForm()
 
-    elif request.method == 'POST':
-        # password reset logic
-        new_password = request.json['password']
+    if form.validate_on_submit():
+        new_password = form.password.data
         hashed_password = generate_password_hash(new_password)
         if a_controller.set_password(email, hashed_password):
-            return jsonify({'message': 'Password reset successful'}), 200
+            return render_template('resetPassword.html', success=True), 200
         else:
-            return jsonify({'error': 'Password reset failed'}), 400
+            flash('Password reset failed. Please try again.', 'danger')
+
+    return render_template('resetPassword.html', form=form, token=token)
+
+    # if request.method == 'GET':
+    #     return jsonify({'message': 'Token is valid'}), 200
+    #
+    # elif request.method == 'POST':
+    #     # password reset logic
+    #     new_password = request.json['password']
+    #     hashed_password = generate_password_hash(new_password)
+    #     if a_controller.set_password(email, hashed_password):
+    #         return jsonify({'message': 'Password reset successful'}), 200
+    #     else:
+    #         return jsonify({'error': 'Password reset failed'}), 400
 
 
 @app.route('/api/transactions', methods=['GET'])

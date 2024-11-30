@@ -4,3 +4,5 @@ Flask-Mail
 itsdangerous
 Werkzeug
 python-dotenv
+flask-wtf
+wtforms
