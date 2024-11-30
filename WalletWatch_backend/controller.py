@@ -57,8 +57,8 @@ class BudgetController:
     def get_all_budgets(self, user_id):
         return self.db_manager.get_all_budgets(user_id)
 
-    def edit_budget(self, budget_id, type, name, budgetLimit, tag, user_id):
-        budget = Budget(budget_id=budget_id, type=type, name=name, budgetLimit=budgetLimit, tag=tag)
+    def edit_budget(self, budget_id, type, budgetLimit, tag, user_id):
+        budget = Budget(budget_id=budget_id, type=type, budgetLimit=budgetLimit, tag=tag)
         status = self.db_manager.edit_budget(budget, user_id)
         return status
 

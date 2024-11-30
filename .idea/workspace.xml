@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c2c0db6-d2df-4151-bd25-d37121d64137" name="Changes" comment="Linked Frontend and Backend for CreateAccount, Login, and AddBudget">
+    <list default="true" id="3c2c0db6-d2df-4151-bd25-d37121d64137" name="Changes" comment="AddBudget hotfix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletWatch_backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/WalletWatch_backend/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletWatch_backend/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/WalletWatch_backend/controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WalletWatch_backend/databaseManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/WalletWatch_backend/databaseManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/AddBudget.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/AddBudget.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/DeleteBudget.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/DeleteBudget.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/EditBudget.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/EditBudget.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/ViewBudgets.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/ViewBudgets.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +148,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -174,7 +180,8 @@
       <workItem from="1732876425804" duration="9708000" />
       <workItem from="1732886933230" duration="408000" />
       <workItem from="1732899716593" duration="9389000" />
-      <workItem from="1732916601718" duration="15990000" />
+      <workItem from="1732916601718" duration="16303000" />
+      <workItem from="1732977643291" duration="10975000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented email password reset">
       <created>1732810924438</created>
@@ -253,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732944542669</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="AddBudget hotfix">
+      <created>1732945493190</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1732945493190</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +285,8 @@
     <MESSAGE value="Updated stuff" />
     <MESSAGE value="Cleaned code" />
     <MESSAGE value="Linked Frontend and Backend for CreateAccount, Login, and AddBudget" />
-    <option name="LAST_COMMIT_MESSAGE" value="Linked Frontend and Backend for CreateAccount, Login, and AddBudget" />
+    <MESSAGE value="AddBudget hotfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="AddBudget hotfix" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Group9_Phase4$Group9_Phase1.coverage" NAME="Group9-Final_Project Coverage Results" MODIFIED="1732767513760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

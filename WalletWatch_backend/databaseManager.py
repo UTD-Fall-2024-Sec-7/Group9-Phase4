@@ -115,9 +115,9 @@ class DatabaseManager:
         cursor = self.conn.cursor()
         cursor.execute(f'''
         UPDATE budgets_{user_id}
-        SET type = ?, name = ?, budgetLimit = ?, tag = ?
+        SET type = ?, budgetLimit = ?, tag = ?
         WHERE id = ?
-        ''', (budget.type, budget.name, budget.budgetLimit, budget.tag, budget.budget_id))
+        ''', (budget.type, budget.budgetLimit, budget.tag, budget.budget_id))
         self.conn.commit()
         return cursor.rowcount > 0
 

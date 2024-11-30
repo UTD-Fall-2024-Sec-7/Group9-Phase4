@@ -190,7 +190,20 @@ def view_budgets():
         return jsonify({"error": "Unauthorized"}), 401
 
     budgets = b_controller.get_all_budgets(user_id)
-    return jsonify(budgets), 200
+
+    budget_list = []
+    for budget in budgets:
+        budget_dict = {
+            "id": budget[0],
+            "name": budget[1],
+            "type": budget[2],
+            "budgetLimit": budget[3],
+            "remainingBudget": budget[4],
+            "tag": budget[5]
+        }
+        budget_list.append(budget_dict)
+
+    return jsonify(budget_list), 200
 
 
 @app.route('/api/budgets', methods=['POST'])
@@ -220,12 +233,12 @@ def edit_budget(budget_id):
     if not user_id:
         return jsonify({"error": "Unauthorized"}), 401
 
-    name = request.json['name']
+    # name = request.json['name']
     budget_type = request.json['type']
     budget_limit = float(request.json['budgetLimit'])
     tag = request.json['tag']
 
-    if b_controller.edit_budget(budget_id, budget_type, name, budget_limit, tag, user_id):
+    if b_controller.edit_budget(budget_id, budget_type, budget_limit, tag, user_id):
         return jsonify({'message': 'Budget updated successfully!'}), 200
     else:
         return jsonify({'error': 'Budget update FAILED'}), 404
