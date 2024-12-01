@@ -14,9 +14,9 @@ const Help = () => {
        <div classname = "Help">
             <header classname = "header" >
             <Stack direction="row" spacing={65} sx={{justifyContent: "center", alignItems: "center",}}>
-            <Button>
+             <Link to="/Help"><Button>
             <HelpIcon style ={{color: 'black'}}></HelpIcon>
-            </Button>
+            </Button></Link>
        
             <h1> WalletWatch</h1>
         <Link to="/dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:30}}>
@@ -49,8 +49,8 @@ const Help = () => {
      <Link to="/viewBudgets"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
         <p>View Budgets</p>
      </Button></Link>
-     <Link to="/createAccount"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
-        <p>Profile</p>
+     <Link to="/settings"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+        <p>Settings</p>
      </Button></Link> 
      </Stack>
      </footer>

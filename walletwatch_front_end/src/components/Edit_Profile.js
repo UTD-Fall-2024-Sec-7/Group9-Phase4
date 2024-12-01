@@ -6,15 +6,15 @@ import Stack from '@mui/material/Stack';
 import './Login.css';
 import TextField from '@mui/material/TextField';
 
-function CreateAccount() {
+function Edit_Profile() {
     return (
-        <div classname = "CreateAccount">
+        <div classname = "Edit_Profile">
             <header classname = "header">
             <h1 style={{ textAlign: 'center'}}>WalletWatch</h1>
              </header>    
              <h2 style={{ textAlign: 'center'}}>Edit Profile</h2>
            
-             <Stack spacing={2} sx={{
+             <Stack spacing={1} sx={{
     justifyContent: "center",
     alignItems: "center"
   }}>
@@ -50,7 +50,7 @@ function CreateAccount() {
     alignItems: "center"
   }}>
 
-    <Link to="/"><Button style ={{color: 'white', backgroundColor:'black', height:50}}>
+    <Link to="/Dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:50}}>
         <p>Back</p>
      </Button></Link>
      <Link to="/Dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:50}}>
@@ -62,4 +62,4 @@ function CreateAccount() {
     );
 }
 
-export default CreateAccount;
+export default Edit_Profile;
