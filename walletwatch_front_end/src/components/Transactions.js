@@ -19,7 +19,7 @@ const Transactions = () => {
     const navigate = useNavigate();
     const [transactions, setTransactions] = useState([]);
     const [filteredTransactions, setFilteredTransactions] = useState([]);
-    const [selectedTag, setSelectedTag] = useState([]);
+    const [selectedTag, setSelectedTag] = useState("");
     const [tag, setTag] = useState('');
 
     useEffect(() => {
@@ -37,6 +37,7 @@ const Transactions = () => {
             const data = await response.json();
             console.log("data: ",data);
             setTransactions(data);
+            resetFilters(data);
         } catch (error) {
             console.error('Error fetching transactions:', error);
         }
@@ -50,6 +51,11 @@ const Transactions = () => {
         } else {
             setFilteredTransactions(transactions); // Show all if no tag selected
         }
+    };
+
+    const resetFilters = (data) => {
+        setSelectedTag("");
+        setFilteredTransactions(data);
     };
 /*
     const handleChange = (event, newValue) => {
@@ -151,7 +157,7 @@ const Transactions = () => {
                                             }}
                                         />
                                     </Stack>
-                                    <Link to="/edittransactions">
+                                    <Link to="/edittransactions" state={{ transaction }}>
                                         <Button
                                             style={{
                                                 color: 'white',

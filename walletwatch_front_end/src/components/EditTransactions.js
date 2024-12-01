@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import './Home.css';
 import HelpIcon from '@mui/icons-material/Help';
@@ -11,14 +11,25 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 
 function EditTransaction() {
-    const [description, setDescription] = useState('');
-    const [amount, setAmmount] = useState('');
-    const [type, setType] = useState('');
-    const [tag, setTag] = useState('');
+    const location = useLocation();
     const navigate = useNavigate();
+    const transaction = location.state?.transaction || null;
+
+    const [description, setDescription] = useState(transaction ? transaction[3] : '');
+    const [amount, setAmount] = useState(transaction ? transaction[2] : '');
+    const [type, setType] = useState(transaction ? transaction[1] : '');
+    const [tag, setTag] = useState(transaction ? transaction[5] : '');
+
+    // Ensure you are properly receiving the transaction object
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!transaction) {
+            alert('No transaction data found.');
+            return;
+        }
+
+        // Create new transaction
         try {
             const response = await fetch('/api/transactions', {
                 method: 'POST',
@@ -29,7 +40,7 @@ function EditTransaction() {
                     type,
                     amount,
                     description,
-                    tag
+                    tag,
                 }),
             });
 
@@ -39,26 +50,34 @@ function EditTransaction() {
                 alert(data.error);
                 return;
             }
-
-            console.log(data);
-            navigate('/transactions');
         } catch (error) {
             console.error('Error adding transaction:', error);
             alert('Failed to add transaction. Please try again.');
         }
+
+        // Delete old transaction if it's available
+        try {
+            const response = await fetch(`/api/transactions/${transaction[0]}`, {
+                method: 'DELETE',
+            });
+            if (!response.ok) {
+                throw new Error(`Failed to delete transaction ${transaction[0]}`);
+            }
+            navigate('/transactions');
+        } catch (error) {
+            console.error('Error deleting transaction:', error);
+            alert('Failed to delete transaction. Please try again.');
+        }
     };
 
     return (
-        <div className="AddTransaction">
+        <div className="EditTransaction">
             <header className="header">
-                <Stack direction="row" spacing={65} sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}>
+                <Stack direction="row" spacing={65} sx={{ justifyContent: "center", alignItems: "center" }}>
                     <Link to="/help">
-                    <Button>
-                        <HelpIcon style={{ color: 'black' }} />
-                    </Button>
+                        <Button>
+                            <HelpIcon style={{ color: 'black' }} />
+                        </Button>
                     </Link>
                     <h1>WalletWatch</h1>
                     <Link to="/dashboard">
@@ -70,15 +89,12 @@ function EditTransaction() {
             </header>
             <h2>Edit Transaction</h2>
             <form onSubmit={handleSubmit}>
-                <Stack spacing={2} sx={{
-                    justifyContent: "center",
-                    alignItems: "center"
-                }}>
-                  <FormControl required sx={{ minWidth: 213.17 }}>
-                        <InputLabel>Transaction Type</InputLabel>
+                <Stack spacing={2} sx={{ justifyContent: "center", alignItems: "center" }}>
+                    <FormControl sx={{ minWidth: 213.17 }}>
+                        <InputLabel>Category</InputLabel>
                         <Select
                             value={type}
-                            label="Transaction Type"
+                            label="Category"
                             onChange={(e) => setType(e.target.value)}
                         >
                             <MenuItem value="spending">Spending</MenuItem>
@@ -86,23 +102,21 @@ function EditTransaction() {
                         </Select>
                     </FormControl>
                     <TextField
-                        required
                         label="Amount"
                         type="number"
                         value={amount}
-                        onChange={(e) => setAmmount(e.target.value)}
+                        onChange={(e) => setAmount(e.target.value)}
                     />
                     <TextField
-                        required
                         label="Description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     />
-                    <FormControl required sx={{ minWidth: 213.17 }}>
-                        <InputLabel>Category</InputLabel>
+                    <FormControl sx={{ minWidth: 213.17 }}>
+                        <InputLabel>Tag</InputLabel>
                         <Select
                             value={tag}
-                            label="Category"
+                            label="Tag"
                             onChange={(e) => setTag(e.target.value)}
                         >
                             <MenuItem value="housing">Housing</MenuItem>
@@ -137,7 +151,7 @@ function EditTransaction() {
                             color: 'white',
                             backgroundColor: 'black',
                             height: 30,
-                            width: 200
+                            width: 200,
                         }}
                     >
                         Submit
@@ -146,10 +160,7 @@ function EditTransaction() {
                 <br />
             </form>
             <footer className="footer">
-            <Stack direction="row" spacing={50} sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}>
+                <Stack direction="row" spacing={50} sx={{ justifyContent: "center", alignItems: "center" }}>
                     <Link to="/transactions">
                         <Button style={{ color: 'white', backgroundColor: 'black', height: 30, width: 200 }}>
                             View Transactions

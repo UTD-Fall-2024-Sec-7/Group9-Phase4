@@ -161,7 +161,7 @@ const Transactions = () => {
                     Delete Selected
                 </Button>
 
-                <Link to="/transcations">
+                <Link to="/transactions">
                     <Button style={{ color: 'white', backgroundColor: 'black', height: 30, width: 200 }}>
                         Cancel
                     </Button>
