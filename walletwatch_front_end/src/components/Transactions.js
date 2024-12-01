@@ -21,9 +21,7 @@ const Transactions = () => {
 
     useEffect(() => {
         // Fetch transactions from an API or other data source
-        fetch('/api/transactions')
-          .then((response) => response.json())
-          .then((data) => setTransactions(data));
+        fetchTransactions();
     }, []);
 
     // Function to fetch transactions
@@ -88,26 +86,21 @@ const Transactions = () => {
                     >
                         {transactions && transactions.length > 0 ? (
                             transactions.map((transaction) => (
-                              <ListItem key={transaction.id}
-                              sx={{
-                                backgroundColor: '#f0f0f0',
-                                marginBottom: '8px',
-                                padding: '16px',
-                              }}>
+                              <ListItem key={transaction[0]} sx={{ backgroundColor: '#f0f0f0', marginBottom: '8px', padding: '16px' }}>
                                     <Stack direction="column" sx={{ flexGrow: 1 }}>
                                         <ListItemText
                                             primary={
-                                              <div style={{ color: 'black', fontWeight: 'bold' }}>
-                                                  ${transaction.amount ? transaction.amount.toFixed(2) : '0.00'}
-                                              </div>
+                                                <div style={{ color: 'black', fontWeight: 'bold' }}>
+                                                    ${transaction[2] ? transaction[2].toFixed(2) : '0.00'}
+                                                </div>
                                           }
                                             secondary={
                                                 <>
-                                                    <div>{new Date(transaction.date).toLocaleDateString()}</div>
-                                                    <div style={{ color: 'gray' }}>Description: {transaction.description}</div>
-                                                    <div style={{ color: 'gray' }}>Tag: {transaction.tag}</div>
-                                                    <div style={{ color: 'gray'}}>
-                                                        Type: {transaction.type === 'savings' ? 'Saving' : 'Spending'}
+                                                    <div>{new Date(transaction[4]).toLocaleDateString()}</div>
+                                                    <div style={{ color: 'gray' }}>Description: {transaction[3]}</div>
+                                                    <div style={{ color: 'gray' }}>Tag: {transaction[5]}</div>
+                                                    <div style={{ color: 'gray' }}>
+                                                    Type: {transaction[1] === 'savings' ? 'Saving' : 'Spending'}
                                                     </div>
                                                 </>
                                             }
