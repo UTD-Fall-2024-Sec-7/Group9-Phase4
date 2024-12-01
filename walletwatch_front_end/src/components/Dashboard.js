@@ -14,9 +14,9 @@ function Dashboard() {
     justifyContent: "center",
     alignItems: "center",
   }}>
-            <Button>
-            <HelpIcon style ={{color: 'black'}}></HelpIcon>
-       </Button>
+           <Link to="/Help"><Button>
+     <HelpIcon style ={{color: 'black'}}></HelpIcon>
+       </Button></Link> 
        
             <h1> WalletWatch</h1>
 <Link to="/dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:30}}>

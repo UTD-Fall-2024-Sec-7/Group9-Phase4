@@ -13,9 +13,9 @@ const FAQ = () => {
         <div className="help-page">
             <header classname = "header" >
             <Stack direction="row" spacing={65} sx={{justifyContent: "center", alignItems: "center",}}>
-            <Button>
+            <Link to="/Help"><Button>
             <HelpIcon style ={{color: 'black'}}></HelpIcon>
-            </Button>
+            </Button></Link>
        
             <h1> WalletWatch</h1>
         <Link to="/dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:30}}>
@@ -28,9 +28,9 @@ const FAQ = () => {
             <main>
                 <h1 style={{ marginLeft: '50px' }}>FAQ</h1>
                 <h2 style={{ marginLeft: '50px' }}>Q: How do I set up a budget?</h2>
-                <h2 style={{ marginLeft: '100px' }}>A: Start by going to the Budgets page and entering your monthly goals. you can categorize expenses and set specific amounts for each.</h2>
-                <h2 style={{ marginLeft: '50px' }}>Q: How can I view spednging trends over time?</h2>
-                <h2 style={{ marginLeft: '100px' }}>A: Use the budgest section to view spending patterns and trends over weeks, months, or years. Customizable charts and filter allow for detailed insights into how your expenses change over time.</h2>
+                <h2 style={{ marginLeft: '100px' }}>A: Start by going to the Budgets page and entering your monthly goals. You can categorize expenses and set specific amounts for each.</h2>
+                <h2 style={{ marginLeft: '50px' }}>Q: How can I view my past spending transactions?</h2>
+                <h2 style={{ marginLeft: '100px' }}>A: Use the View Transactions page to view spending over weeks, months, or years. Tags allow you to categorically view your transactions and analyze how much you're spending. </h2>
             </main>
 
     <footer classname = "footer">
