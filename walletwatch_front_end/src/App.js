@@ -14,6 +14,9 @@ import Contact from './components/Contact';
 import Settings from './components/Settings';
 import Edit_Profile from './components/Edit_Profile';
 import Help from './components/Help';
+import EditTransactions from './components/EditTransactions';
+import AddTransactions from './components/AddTransactions';
+import DeleteTransactions from './components/DeleteTransactions';
 
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
@@ -36,6 +39,9 @@ function App() {
         <Route path="/edit_profile" element={<Edit_Profile/>} />
         <Route path="/transactions" element={<Transactions/>} />
         <Route path="/help" element={<Help/>} />
+        <Route path="/edittransactions" element={<EditTransactions />} />
+        <Route path="/addtranscations" element={<AddTransactions/>} />
+        <Route path="/deletetranscations" element={<DeleteTransactions/>} />
       </Routes>
       </Router>
     </div>
