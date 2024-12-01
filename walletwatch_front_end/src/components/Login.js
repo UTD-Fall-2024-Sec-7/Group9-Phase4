@@ -10,26 +10,6 @@ function Login() {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    useEffect(() => {
-        logoutUser();
-    }, []);
-
-    const logoutUser = async (e) => {
-        try {
-            const response = await fetch('/api/logout')
-            const data = await response.json();
-            if (!response.ok) {
-                alert(data.error);
-                return;
-            }
-            console.log(data);
-            navigate('/login');
-        } catch (error) {
-            console.error(error);
-            alert('An error occurred during login. Please try again.');
-        }
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
