@@ -77,9 +77,11 @@ const Transactions = () => {
                     justifyContent: "center",
                     alignItems: "center",
                 }}>
+                    <Link to="/help">
                     <Button>
                         <HelpIcon style={{ color: 'black' }} />
                     </Button>
+                    </Link>
 
                     <h1> WalletWatch</h1>
                     <Link to="/dashboard">
@@ -187,9 +189,9 @@ const Transactions = () => {
                             View Budgets
                         </Button>
                     </Link>
-                    <Link to="/createAccount">
+                    <Link to="/settings">
                         <Button style={{ color: 'white', backgroundColor: 'black', height: 30, width: 200 }}>
-                            Profile
+                            Settings
                         </Button>
                     </Link>
                 </Stack>
