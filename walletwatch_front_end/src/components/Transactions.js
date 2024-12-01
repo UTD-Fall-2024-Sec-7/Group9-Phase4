@@ -10,13 +10,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from "@mui/material/Paper";
 import Box from '@mui/material/Box';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
 
 const Transactions = () => {
     const navigate = useNavigate();
     const [transactions, setTransactions] = useState([]); // Define transactions state
-    const [description, setDescription] = useState('');
-    const [amount, setAmount] = useState('');
-    const [type, setType] = useState('');
     const [tag, setTag] = useState('');
 
     useEffect(() => {
@@ -36,6 +37,19 @@ const Transactions = () => {
             setTransactions(data);
         } catch (error) {
             console.error('Error fetching transactions:', error);
+        }
+    };
+
+    const handleSearch = async (selectedTag) => {
+        try {
+                console.log("tag: ", selectedTag);
+                const response = await fetch(`/api/filterTransactions/${selectedTag}`);
+                if (!response.ok) {
+                    throw new Error(`Failed to saerch ${selectedTag}`);
+                }
+        } catch (error) {
+            console.error('Search Error:', error);
+            alert('Failed to search. Please try again.');
         }
     };
 /*
@@ -66,7 +80,53 @@ const Transactions = () => {
                     </Link>
                 </Stack>
             </header>
+            <Stack
+                direction="row"
+                spacing={2} 
+                alignItems="center"
+                sx={{
+                    width: '100%'
+                }}>
             <h2> Your Transactions</h2>
+            <div style={{ flexGrow: 1 }}></div>
+            <h2> Search:</h2>
+            <FormControl required sx={{ minWidth: 213.17, marginLeft: 'auto' }}>
+                        <InputLabel>Category</InputLabel>
+                        <Select 
+                            value={tag}
+                            label="Category"
+                            onChange={(e) => {
+                                const selectedTag = e.target.value;
+                                setTag(selectedTag);
+                                handleSearch(selectedTag);
+                            }}>
+                            
+                            <MenuItem value="housing">Housing</MenuItem>
+                            <MenuItem value="utilities">Utilities</MenuItem>
+                            <MenuItem value="groceries">Groceries</MenuItem>
+                            <MenuItem value="transportation">Transportation</MenuItem>
+                            <MenuItem value="healthcare">Healthcare</MenuItem>
+                            <MenuItem value="dining">Dining Out</MenuItem>
+                            <MenuItem value="entertainment">Entertainment</MenuItem>
+                            <MenuItem value="shopping">Shopping</MenuItem>
+                            <MenuItem value="travel">Travel</MenuItem>
+                            <MenuItem value="fitness">Fitness</MenuItem>
+                            <MenuItem value="education">Education</MenuItem>
+                            <MenuItem value="professional">Professional Development</MenuItem>
+                            <MenuItem value="technology">Technology</MenuItem>
+                            <MenuItem value="savings">Savings</MenuItem>
+                            <MenuItem value="investments">Investments</MenuItem>
+                            <MenuItem value="emergency">Emergency Fund</MenuItem>
+                            <MenuItem value="retirement">Retirement</MenuItem>
+                            <MenuItem value="gifts">Gifts</MenuItem>
+                            <MenuItem value="hobbies">Hobbies</MenuItem>
+                            <MenuItem value="petcare">Pet Care</MenuItem>
+                            <MenuItem value="personalcare">Personal Care</MenuItem>
+                            <MenuItem value="insurance">Insurance</MenuItem>
+                            <MenuItem value="subscriptions">Subscriptions</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Stack>
             <Box sx={{ width: '100%', height: '50vh', borderColor: 'divider' }}>
                 <Paper square elevation={3} sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <List
