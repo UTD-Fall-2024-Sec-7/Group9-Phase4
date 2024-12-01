@@ -5,6 +5,7 @@ import './Home.css';
 import HelpIcon from '@mui/icons-material/Help';
 import Stack from '@mui/material/Stack';
 
+
 function Dashboard() {
     const [user, setUser] = useState([]);
 
@@ -35,13 +36,13 @@ function Dashboard() {
        </Button>
        
             <h1> WalletWatch</h1>
-<Link to="/"><Button style ={{color: 'white', backgroundColor:'black', height:30}}>
+<Link to="/login"><Button style ={{color: 'white', backgroundColor:'black', height:30}}>
         <p>Logout</p>
      </Button></Link>
             </Stack>
      </header>
-     <h2 style={{ textAlign: 'center', fontFamily: 'Arial'}}> Welcome {user.firstName}!</h2>
-     <p style={{ textAlign: 'center', fontFamily: 'Arial'}}>
+     <h2 style={{ textAlign: 'center' }}> Welcome {user.firstName}!</h2>
+     <p style={{ textAlign: 'center' }}>
     <h3 style={{textAlign:'center'}}> What would you like to do today?</h3>
         </p>
      <footer classname = "footer">
