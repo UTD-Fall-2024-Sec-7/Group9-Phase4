@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c2c0db6-d2df-4151-bd25-d37121d64137" name="Changes" comment="Finished budget feature">
+    <list default="true" id="3c2c0db6-d2df-4151-bd25-d37121d64137" name="Changes" comment="Added logout feature">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletWatch_backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/WalletWatch_backend/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Login.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +179,7 @@
       <workItem from="1732899716593" duration="9389000" />
       <workItem from="1732916601718" duration="16303000" />
       <workItem from="1732977643291" duration="12901000" />
-      <workItem from="1733009073478" duration="1667000" />
+      <workItem from="1733009073478" duration="3728000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented email password reset">
       <created>1732810924438</created>
@@ -271,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732995923875</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added logout feature">
+      <created>1733011091866</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1733011091867</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,7 +299,8 @@
     <MESSAGE value="Linked Frontend and Backend for CreateAccount, Login, and AddBudget" />
     <MESSAGE value="AddBudget hotfix" />
     <MESSAGE value="Finished budget feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished budget feature" />
+    <MESSAGE value="Added logout feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added logout feature" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Group9_Phase4$Group9_Phase1.coverage" NAME="Group9-Final_Project Coverage Results" MODIFIED="1732767513760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
