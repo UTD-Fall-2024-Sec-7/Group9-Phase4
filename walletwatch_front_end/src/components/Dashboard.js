@@ -56,8 +56,8 @@ function Dashboard() {
      <Link to="/viewBudgets"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
         <p>View Budgets</p>
      </Button></Link>
-     <Link to="/createAccount"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
-        <p>Profile</p>
+     <Link to="/settings"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+        <p>Settings</p>
      </Button></Link> 
      </Stack>
      </footer>
