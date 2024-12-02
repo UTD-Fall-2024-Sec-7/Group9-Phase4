@@ -119,7 +119,7 @@ function ViewBudgets(){
                                                     }}
                                                 />
                                             </Stack>
-                                            <Link to="/editBudget">
+                                            <Link to="/editBudget" state={{ budget }}>
                                                 <Button style={{
                                                     color: 'white',
                                                     backgroundColor: 'black',
