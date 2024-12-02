@@ -137,7 +137,20 @@ def view_transactions():
         return jsonify({"error": "Unauthorized"}), 401
 
     transactions = t_controller.get_transaction_history(user_id)
-    return jsonify(transactions), 200
+
+    transaction_list = []
+    for transaction in transactions:
+        transaction_dict = {
+            "id": transaction[0],
+            "type": transaction[1],
+            "amount": transaction[2],
+            "description": transaction[3],
+            "date": transaction[4],
+            "tag": transaction[5]
+        }
+        transaction_list.append(transaction_dict)
+
+    return jsonify(transaction_list), 201
 
 
 @app.route('/api/transactions', methods=['POST'])

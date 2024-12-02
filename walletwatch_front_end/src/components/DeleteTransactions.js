@@ -11,6 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Paper from "@mui/material/Paper";
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
+import Chip from '@mui/material/Chip';
 
 const Transactions = () => {
     const navigate = useNavigate();
@@ -30,7 +31,7 @@ const Transactions = () => {
                 throw new Error('Failed to fetch transactions');
             }
             const data = await response.json();
-            console.log("data: ",data);
+            //console.log("data: ",data);
             setTransactions(data);
         } catch (error) {
             console.error('Error fetching transactions:', error);
@@ -38,13 +39,11 @@ const Transactions = () => {
     };
 
     const handleCheckboxChange = (transactionId) => {
-        
-        setSelectedTransactions((prev) => {
-            // If the transactionId is already in selectedTransactions, remove it (deselect)
+        if (!transactionId) return; // Add this check
+        setSelectedTransactions(prev => {
             if (prev.includes(transactionId)) {
-                return prev.filter((id) => id !== transactionId);
+                return prev.filter(id => id !== transactionId);
             }
-            // Otherwise, add the transactionId to the selectedTransactions array
             return [...prev, transactionId];
         });
     };
@@ -52,7 +51,6 @@ const Transactions = () => {
     const handleDelete = async () => {
         try {
             for (const transactionId of selectedTransactions) {
-                console.log(transactionId);
                 const response = await fetch(`/api/transactions/${transactionId}`, {
                     method: 'DELETE',
                 });
@@ -60,7 +58,7 @@ const Transactions = () => {
                     throw new Error(`Failed to delete transaction ${transactionId}`);
                 }
             }
-            alert('Selected transactions deleted successfully');
+            alert('Selected transactions successfully deleted')
             navigate('/transactions');
         } catch (error) {
             console.error('Error deleting transactions:', error);
@@ -76,9 +74,9 @@ const Transactions = () => {
                     alignItems: "center",
                 }}>
                     <Link to="/help">
-                    <Button>
-                        <HelpIcon style={{ color: 'black' }} />
-                    </Button>
+                        <Button>
+                            <HelpIcon style={{ color: 'black' }} />
+                        </Button>
                     </Link>
 
                     <h1> WalletWatch</h1>
@@ -109,36 +107,77 @@ const Transactions = () => {
                     >
                         {transactions && transactions.length > 0 ? (
                             transactions.map((transaction) => (
-                                <ListItem key={transaction[0]} sx={{ backgroundColor: '#f0f0f0', marginBottom: '8px', padding: '16px' }}>
-                                <Checkbox
-                                        checked={selectedTransactions.includes(transaction[0])}
-                                        onChange={() => handleCheckboxChange(transaction[0])}
-                                    />
-                                    <Stack direction="column" sx={{ flexGrow: 1 }}>
-                                        <ListItemText
-                                            primary={
-                                                <div style={{ color: 'black', fontWeight: 'bold' }}>
-                                                    ${transaction[2] ? transaction[2].toFixed(2) : '0.00'}
-                                                </div>
-                                          }
-                                          secondary={
-                                            <>
-                                                <div>{new Date(transaction[4]).toLocaleDateString()}</div>
-                                                <div style={{ color: 'gray' }}>Description: {transaction[3]}</div>
-                                                <div style={{ color: 'gray' }}>Tag: {transaction[5]}</div>
-                                                <div style={{ color: 'gray' }}>
-                                                Type: {transaction[1] === 'savings' ? 'Saving' : 'Spending'}
-                                                </div>
-                                            </>
-                                        }
-                                            sx={{
-                                                '& .MuiListItemText-primary': {
-                                                    fontWeight: 'bold',
-                                                },
-                                            }}
+                                <React.Fragment key={transaction.id}>
+                                    <ListItem sx={{
+                                        backgroundColor: '#f0f0f0',
+                                        marginBottom: '8px',
+                                        padding: '16px'
+                                    }}>
+                                        <Checkbox
+                                            checked={selectedTransactions.includes(transaction.id)}
+                                            onChange={() => handleCheckboxChange(transaction.id)}
                                         />
-                                    </Stack>
-                                </ListItem>
+                                        <Stack direction="row" spacing={2} sx={{
+                                            flexGrow: 1,
+                                            alignItems: 'center'
+                                        }}>
+                                            <Stack direction="column">
+                                                <ListItemText
+                                                    primary={
+                                                        transaction.type === 'savings' ? (
+                                                            <div style={{ color: 'green', fontWeight: 'bold' }}>
+                                                                +${transaction.amount ? transaction.amount.toFixed(2) : '0.00'}
+                                                                <div style={{ color: 'gray' }}>{transaction.description}</div>
+                                                            </div>
+                                                        ) : (
+                                                            <div style={{ color: 'red', fontWeight: 'bold' }}>
+                                                                -${transaction.amount ? transaction.amount.toFixed(2) : '0.00'}
+                                                                <div style={{ color: 'gray' }}>{transaction.description}</div>
+                                                            </div>
+                                                        )
+                                                    }
+                                                    secondary={
+                                                        <>
+                                                            <div style={{fontWeight: 'bold' }}>{new Date(transaction.date).toLocaleDateString()}</div>
+                                                            <div style={{ color: 'gray' }}>
+                                                                {transaction.type === 'savings' ? 'Saving' : 'Spending'}
+                                                            </div>
+                                                        </>
+                                                    }
+                                                    sx={{
+                                                        '& .MuiListItemText-primary': {
+                                                            fontWeight: 'bold'
+                                                        }
+                                                    }}
+                                                />
+                                            </Stack>
+                                            <Chip
+                                                label={transaction.tag}
+                                                variant="outlined"
+                                                sx={{
+                                                    minWidth: '80px',
+                                                    backgroundColor: 'mediumseagreen',  // lighter green on hover
+                                                    borderColor: 'mediumseagreen',  // green color for border
+                                                    color: '#e8f5e9',        // matching text color
+                                                    fontWeight: 'bold',
+                                                    borderRadius: '16px',
+                                                    padding: '4px 8px',
+                                                    height: '32px'
+                                                }}
+                                            />
+                                        </Stack>
+                                        <Button
+                                            style={{
+                                                color: 'white',
+                                                backgroundColor: 'black',
+                                                height: 30,
+                                                borderRadius: '4px'
+                                            }}
+                                        >
+                                            Edit
+                                        </Button>
+                                    </ListItem>
+                                </React.Fragment>
                             ))
                         ) : (
                             <ListItem>
@@ -149,7 +188,7 @@ const Transactions = () => {
                 </Paper>
             </Box>
             <div style={{ marginTop: '20px', display: 'flex', gap: '20px' }}>
-            <Button
+                <Button
                     onClick={handleDelete}
                     disabled={selectedTransactions.length === 0}
                     style={{

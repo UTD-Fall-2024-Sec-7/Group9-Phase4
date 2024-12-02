@@ -15,10 +15,10 @@ function EditTransaction() {
     const navigate = useNavigate();
     const transaction = location.state?.transaction || null;
 
-    const [description, setDescription] = useState(transaction ? transaction[3] : '');
-    const [amount, setAmount] = useState(transaction ? transaction[2] : '');
-    const [type, setType] = useState(transaction ? transaction[1] : '');
-    const [tag, setTag] = useState(transaction ? transaction[5] : '');
+    const [description, setDescription] = useState(transaction ? transaction.description : '');
+    const [amount, setAmount] = useState(transaction ? transaction.amount : '');
+    const [type, setType] = useState(transaction ? transaction.type : '');
+    const [tag, setTag] = useState(transaction ? transaction.tag : '');
 
     // Ensure you are properly receiving the transaction object
 
@@ -57,11 +57,11 @@ function EditTransaction() {
 
         // Delete old transaction if it's available
         try {
-            const response = await fetch(`/api/transactions/${transaction[0]}`, {
+            const response = await fetch(`/api/transactions/${transaction.id}`, {
                 method: 'DELETE',
             });
             if (!response.ok) {
-                throw new Error(`Failed to delete transaction ${transaction[0]}`);
+                throw new Error(`Failed to delete transaction ${transaction.id}`);
             }
             navigate('/transactions');
         } catch (error) {

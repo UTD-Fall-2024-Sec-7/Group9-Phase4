@@ -14,6 +14,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+import Chip from '@mui/material/Chip';
 
 const Transactions = () => {
     const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Transactions = () => {
     const handleFilter = (tag) => {
         setSelectedTag(tag);
         if (tag) {
-            const filtered = transactions.filter((transaction) => transaction[5] === tag);
+            const filtered = transactions.filter((transaction) => transaction.tag === tag);
             setFilteredTransactions(filtered);
         } else {
             setFilteredTransactions(transactions); // Show all if no tag selected
@@ -65,12 +66,12 @@ const Transactions = () => {
       setTag(newValue);
   };
 */
-    const uniqueTags = [...new Set(transactions.map((transaction) => transaction[5]))];
+    const uniqueTags = [...new Set(transactions.map((transaction) => transaction.tag))];
 
     return (
         <div className="ViewTransactions">
             <header className="header">
-                <Stack direction="row" spacing={65} sx={{
+                <Stack direction="row" spacing={63} sx={{
                     justifyContent: "center",
                     alignItems: "center",
                 }}>
@@ -132,44 +133,75 @@ const Transactions = () => {
                     >
                         {filteredTransactions.length > 0 ? (
                             filteredTransactions.map((transaction) => (
-                              <ListItem key={transaction[0]} sx={{ backgroundColor: '#f0f0f0', marginBottom: '8px', padding: '16px' }}>
-                                    <Stack direction="column" sx={{ flexGrow: 1 }}>
-                                        <ListItemText
-                                            primary={
-                                                <div style={{ color: 'black', fontWeight: 'bold' }}>
-                                                    ${transaction[2] ? transaction[2].toFixed(2) : '0.00'}
-                                                </div>
-                                          }
-                                            secondary={
-                                                <>
-                                                    <div>{new Date(transaction[4]).toLocaleDateString()}</div>
-                                                    <div style={{ color: 'gray' }}>Description: {transaction[3]}</div>
-                                                    <div style={{ color: 'gray' }}>Tag: {transaction[5]}</div>
-                                                    <div style={{ color: 'gray' }}>
-                                                    Type: {transaction[1] === 'savings' ? 'Saving' : 'Spending'}
-                                                    </div>
-                                                </>
-                                            }
-                                            sx={{
-                                                '& .MuiListItemText-primary': {
+                                <React.Fragment key={transaction.id}>
+                                    <ListItem sx={{
+                                        backgroundColor: '#f0f0f0',
+                                        marginBottom: '8px',
+                                        padding: '16px'
+                                    }}>
+                                        <Stack direction="row" spacing={2} sx={{
+                                            flexGrow: 1,
+                                            alignItems: 'center'
+                                        }}>
+                                            <Stack direction="column">
+                                                <ListItemText
+                                                    primary={
+                                                        transaction.type === 'savings' ? (
+                                                            <div style={{ color: 'green', fontWeight: 'bold' }}>
+                                                                +${transaction.amount ? transaction.amount.toFixed(2) : '0.00'}
+                                                                <div style={{ color: 'gray' }}>{transaction.description}</div>
+                                                            </div>
+                                                        ) : (
+                                                            <div style={{ color: 'red', fontWeight: 'bold' }}>
+                                                                -${transaction.amount ? transaction.amount.toFixed(2) : '0.00'}
+                                                                <div style={{ color: 'gray' }}>{transaction.description}</div>
+                                                            </div>
+                                                        )
+                                                    }
+                                                    secondary={
+                                                        <>
+                                                            <div style={{fontWeight: 'bold' }}>{new Date(transaction.date).toLocaleDateString()}</div>
+                                                            <div style={{ color: 'gray' }}>
+                                                                {transaction.type === 'savings' ? 'Saving' : 'Spending'}
+                                                            </div>
+                                                        </>
+                                                    }
+                                                    sx={{
+                                                        '& .MuiListItemText-primary': {
+                                                            fontWeight: 'bold'
+                                                        }
+                                                    }}
+                                                />
+                                            </Stack>
+                                            <Chip
+                                                label={transaction.tag}
+                                                variant="outlined"
+                                                sx={{
+                                                    minWidth: '80px',
+                                                    backgroundColor: 'mediumseagreen',  // lighter green on hover
+                                                    borderColor: 'mediumseagreen',  // green color for border
+                                                    color: '#e8f5e9',        // matching text color
                                                     fontWeight: 'bold',
-                                                },
-                                            }}
-                                        />
-                                    </Stack>
-                                    <Link to="/edittransactions" state={{ transaction }}>
-                                        <Button
-                                            style={{
-                                                color: 'white',
-                                                backgroundColor: 'black',
-                                                height: 30,
-                                                borderRadius: '4px',
-                                            }}
-                                        >
-                                            Edit
-                                        </Button>
-                                    </Link>
-                                </ListItem>
+                                                    borderRadius: '16px',
+                                                    padding: '4px 8px',
+                                                    height: '32px'
+                                                }}
+                                            />
+                                        </Stack>
+                                        <Link to="/edittransactions" state={{ transaction }}>
+                                            <Button
+                                                style={{
+                                                    color: 'white',
+                                                    backgroundColor: 'black',
+                                                    height: 30,
+                                                    borderRadius: '4px'
+                                                }}
+                                            >
+                                                Edit
+                                            </Button>
+                                        </Link>
+                                    </ListItem>
+                                </React.Fragment>
                             ))
                         ) : (
                             <ListItem>
