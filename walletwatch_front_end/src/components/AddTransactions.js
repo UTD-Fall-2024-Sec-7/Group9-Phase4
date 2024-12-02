@@ -93,7 +93,6 @@ function AddTransaction() {
                         onChange={(e) => setAmmount(e.target.value)}
                     />
                     <TextField
-                        required
                         label="Description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}

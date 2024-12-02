@@ -7,8 +7,15 @@
     <list default="true" id="3c2c0db6-d2df-4151-bd25-d37121d64137" name="Changes" comment="Finished budget feature">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WalletWatch_backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/WalletWatch_backend/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/AddTransactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/AddTransactions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/DeleteTransactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/DeleteTransactions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/EditTransactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/EditTransactions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Edit_Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Edit_Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Login.css" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Transactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Transactions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,26 +55,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Flask-Port&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/aades/IntelliJ/CS3354/Group9-Phase1/WalletWatch_backend/venv/Scripts/python.exe&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.idesettings.debugger.python&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "flask-port",
+    "last_opened_file_path": "C:/Users/aades/IntelliJ/CS3354/Group9-Phase1/WalletWatch_backend/venv/Scripts/python.exe",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.idesettings.debugger.python",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Python.python app.py">
     <configuration name="Group9-Final_Project" type="PythonConfigurationType" factoryName="Python">
       <module name="Group9-Phase1" />
@@ -276,6 +283,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Implemented email password reset" />

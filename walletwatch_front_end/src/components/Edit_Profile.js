@@ -7,11 +7,15 @@ import './Login.css';
 import TextField from '@mui/material/TextField';
 
 function Edit_Profile() {
-  const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
+    const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+    console.log(userInfo);
+
+    const [firstName, setFirstName] = useState(userInfo?.firstName || '');
+    const [lastName, setLastName] = useState(userInfo?.lastName || '');
+    const [email, setEmail] = useState(userInfo?.email || '');
     const [password, setPassword] = useState('');
-    const [income, setIncome] = useState('');
+    const [oldPassword, setOldPassword] = useState('');
+    const [income, setIncome] = useState(userInfo?.income || '');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -36,64 +40,80 @@ function Edit_Profile() {
             }
 
             const data = await response.json();
-            console.log('Account created successfully:', data);
+            console.log('Account updated successfully:', data);
             navigate('/Dashboard');
         } catch (error) {
-            console.error('Error creating account:', error);
+            console.error('Error updating account:', error);
             alert("Email already in use. Please use another email or head over to the login page.");
         }
     };
     return (
         <div classname = "Edit_Profile">
             <header classname = "header">
-            <h1 style={{ textAlign: 'center'}}>WalletWatch</h1>
-             </header>    
-             <h2 style={{ textAlign: 'center'}}>Edit Profile</h2>
-           
-             <Stack spacing={1} sx={{
-    justifyContent: "center",
-    alignItems: "center"
-  }}>
-             <TextField
-          id="outlined-required"
-          label="First Name"
-        />
-        <TextField
-          id="outlined-required"
-          label="Last Name"
-        />
-        <TextField
-          id="outlined-required"
-          label="Email"
-        />
-        <TextField
-          id="outlined-required"
-          label=" New Password"
-        />
-        <TextField
-          id="outlined-required"
-          label="Income Level"
-        />
-        <TextField
-          required
-          id="outlined-required"
-          label="Old Password"
-        />
-        </Stack>
-             <footer classname = "footer">
-             <Stack direction="row" spacing={150} sx={{
-    justifyContent: "center",
-    alignItems: "center"
-  }}>
+                <h1 style={{ textAlign: 'center'}}>WalletWatch</h1>
+            </header>
+            <h2 style={{ textAlign: 'center'}}>Edit Profile</h2>
 
-    <Link to="/Dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:50}}>
-        <p>Back</p>
-     </Button></Link>
-     <Link to="/Dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:50}}>
-        <p>Submit</p>
-     </Button></Link>
-                 </Stack>
-     </footer>
+            <form onSubmit={handleSubmit}>
+                <Stack spacing={1} sx={{
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                    <TextField
+                        id="outlined-required"
+                        label="First Name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                    />
+                    <TextField
+                        id="outlined-required"
+                        label="Last Name"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                    />
+                    <TextField
+                        id="outlined-required"
+                        label="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <TextField
+                        id="outlined-required"
+                        label="New Password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <TextField
+                        id="outlined-required"
+                        label="Income Level"
+                        value={income}
+                        onChange={(e) => setIncome(e.target.value)}
+                    />
+                    <TextField
+                        required
+                        id="outlined-required"
+                        label="Old Password"
+                        type="password"
+                        value={oldPassword}
+                        onChange={(e) => setOldPassword(e.target.value)}
+                    />
+                </Stack>
+                <footer classname = "footer">
+                    <Stack direction="row" spacing={150} sx={{
+                        justifyContent: "center",
+                        alignItems: "center"
+                    }}>
+
+                        <Link to="/Dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:50}}>
+                            <p>Back</p>
+                        </Button></Link>
+                        <Link to="/Dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:50}}>
+                            <p>Submit</p>
+                        </Button></Link>
+                    </Stack>
+                </footer>
+            </form>
         </div>
     );
 }
