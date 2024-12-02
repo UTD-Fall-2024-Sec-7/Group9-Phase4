@@ -18,7 +18,7 @@ function EditBudget()
     const budget = location.state?.budget || null;
     console.log(budget.id);
 
-    const [name, setName] = useState(budget? budget.name : '');
+   // const [name, setName] = useState(budget? budget.name : '');
     const [budgetLimit, setBudgetLimit] = useState(budget? budget.budgetLimit : '');
     const [type, setType] = useState(budget? budget.type : '');
     const [tag, setTag] = useState(budget? budget.tag : ''); 
@@ -29,8 +29,38 @@ function EditBudget()
             alert('No budget found.');
             return;
         }
-        // Create new budget
+
         try {
+            const response = await fetch(`/api/budgets/${budget.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    //name,
+                    type,
+                    budgetLimit: parseFloat(budgetLimit),
+                    tag,
+                }),
+            });
+
+           const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.error);
+                return;
+            }
+    console.log(data);
+                
+                console.log("Budget updated successfully:", data);
+                navigate('/viewBudgets');
+        } catch (error) {
+            console.error('Error adding budget:', error);
+            alert('Failed to add budget. Please try again.');
+        }
+    };
+        // Create new budget
+       /* try {
             const response = await fetch('/api/budgets', {
                 method: 'POST',
                 headers: {
@@ -70,7 +100,7 @@ function EditBudget()
             console.error('Error deleting budget:', error);
             alert('Failed to delete budget. Please try again.');
         }
-    };
+    };*/
 
 
 return(  
@@ -107,13 +137,7 @@ return(
                     <MenuItem value="savings">Savings</MenuItem>
                 </Select>
                 </FormControl>
-            <TextField
-            required
-            id="outlined-required"
-            value={name}
-            label="Budget Name"
-            onChange={(e) => setName(e.target.value)}
-            />
+           
             <TextField
             required
             id="outlined-required"
@@ -153,12 +177,13 @@ return(
                             <MenuItem value="subscriptions">Subscriptions</MenuItem>
                         </Select>
                     </FormControl>
-            <Link to="/viewBudgets"><Button style ={{float:'right', color: 'white', backgroundColor:'black', height:30, width:200}}>
+          <Button style ={{float:'right', color: 'white', backgroundColor:'black', height:30, width:200}}>
                 <p>Submit</p>
-            </Button></Link>
+            </Button>
         </Stack>
-    </form>
- <br></br>
+  
+ <br></br>  
+ </form>
 <footer classname = "footer">
      <Stack direction="row" spacing={50} sx={{
         justifyContent: "center",
@@ -180,77 +205,3 @@ return(
 }
 
 export default EditBudget;
-/*import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import './Home.css';
-import HelpIcon from '@mui/icons-material/Help';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-
-
-function EditBudget()
-{
-    return(  
-    <div classname = "EditBudget">
-    <header classname = "header" >
-    <Stack direction="row" spacing={65} sx={{
-justifyContent: "center",
-alignItems: "center",
-}}>
-    <Button>
-    <HelpIcon style ={{color: 'black'}}></HelpIcon>
-</Button>
-
-    <h1> WalletWatch</h1>
-<Link to="/dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:30}}>
-<p>Home</p>
-</Button></Link>
-    </Stack>
-</header>
-<h2> Edit Budget</h2>
-<Stack spacing={2} sx={{
-    justifyContent: "center",
-    alignItems: "center"
-  }}>
-             <TextField
-          required
-          id="outlined-required"
-          label="Budget Type"
-        />
-        <TextField
-          required
-          id="outlined-required"
-          label="Budget Amount"
-        />
-        <TextField
-          required
-          id="outlined-required"
-          label="Tags"
-        />
-        </Stack>
-        <br></br>
-        <Link to="/viewBudgets"><Button style ={{float:'right', color: 'white', backgroundColor:'black', height:30, width:200}}>
-        <p>Submit</p>
-     </Button></Link> 
-             <footer classname = "footer">
-   <Stack direction="row" spacing={50} sx={{
-    justifyContent: "center",
-    alignItems: "center",
-  }}>
- <Link to="/createAccount"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
-        <p>View Transactions</p>
-     </Button></Link> 
-     <Link to="/viewBudgets"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
-        <p>View Budgets</p>
-     </Button></Link>
-     <Link to="/createAccount"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
-        <p>Profile</p>
-     </Button></Link> 
-     </Stack>
-     </footer>
-</div>
-);
-}
-
-export default EditBudget;*/
