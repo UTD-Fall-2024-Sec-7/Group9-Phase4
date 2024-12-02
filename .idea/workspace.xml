@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c2c0db6-d2df-4151-bd25-d37121d64137" name="Changes" comment="Finished budget feature">
+    <list default="true" id="3c2c0db6-d2df-4151-bd25-d37121d64137" name="Changes" comment="Modified UI for homepage, dashboard, transactions, and Edit Profile">
+      <change afterPath="$PROJECT_DIR$/WalletWatch_backend/Graph.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Graph.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WalletWatch_backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/WalletWatch_backend/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/AddTransactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/AddTransactions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/DeleteTransactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/DeleteTransactions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/EditTransactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/EditTransactions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Edit_Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Edit_Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Login.css" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/walletwatch_front_end/src/components/Transactions.js" beforeDir="false" afterPath="$PROJECT_DIR$/walletwatch_front_end/src/components/Transactions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +23,7 @@
       <list>
         <option value="package.json" />
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -55,27 +52,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "flask-port",
-    "last_opened_file_path": "C:/Users/aades/IntelliJ/CS3354/Group9-Phase1/WalletWatch_backend/venv/Scripts/python.exe",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.idesettings.debugger.python",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;flask-port&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/aades/IntelliJ/CS3354/Group9-Phase1/WalletWatch_backend/venv/Scripts/python.exe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.idesettings.debugger.python&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Python.python app.py">
+}</component>
+  <component name="RunManager" selected="Node.js.Graph.js">
+    <configuration name="Graph.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/walletwatch_front_end/src/components/Graph.js" working-dir="$PROJECT_DIR$/walletwatch_front_end/src/components">
+      <method v="2" />
+    </configuration>
     <configuration name="Group9-Final_Project" type="PythonConfigurationType" factoryName="Python">
       <module name="Group9-Phase1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -161,6 +161,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.Graph.js" />
         <item itemvalue="Flask server.Flask (WalletWatch_backend/app.py)" />
         <item itemvalue="Python.databaseManager" />
       </list>
@@ -186,6 +187,7 @@
       <workItem from="1732916601718" duration="16303000" />
       <workItem from="1732977643291" duration="12901000" />
       <workItem from="1733009073478" duration="1667000" />
+      <workItem from="1733105602175" duration="5143000" />
     </task>
     <task id="LOCAL-00001" summary="Implemented email password reset">
       <created>1732810924438</created>
@@ -278,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732995923875</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Modified UI for homepage, dashboard, transactions, and Edit Profile">
+      <created>1733104593183</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1733104593183</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +318,8 @@
     <MESSAGE value="Linked Frontend and Backend for CreateAccount, Login, and AddBudget" />
     <MESSAGE value="AddBudget hotfix" />
     <MESSAGE value="Finished budget feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished budget feature" />
+    <MESSAGE value="Modified UI for homepage, dashboard, transactions, and Edit Profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified UI for homepage, dashboard, transactions, and Edit Profile" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Group9_Phase4$Group9_Phase1.coverage" NAME="Group9-Final_Project Coverage Results" MODIFIED="1732767513760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
