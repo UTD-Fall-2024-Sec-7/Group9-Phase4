@@ -94,9 +94,19 @@ class DatabaseManager:
         self.conn.commit()
         return cursor.rowcount > 0
 
-    def filter_transaction(self, filter_type, user_id):
+    def edit_transaction(self, transaction, user_id):
         cursor = self.conn.cursor()
-        cursor.execute(f'SELECT * FROM transactions_{user_id} ORDER BY ? DESC', (filter_type,))
+        cursor.execute(f'''
+        UPDATE transactions_{user_id}
+        SET type = ?, amount = ?, description = ?, tag = ?
+        WHERE id = ?
+        ''', (transaction.type, transaction.amount, transaction.description, transaction.tag, transaction.transaction_id))
+        self.conn.commit()
+        return cursor.rowcount > 0
+
+    # def filter_transaction(self, filter_type, user_id):
+    #     cursor = self.conn.cursor()
+    #     cursor.execute(f'SELECT * FROM transactions_{user_id} ORDER BY ? DESC', (filter_type,))
 
     def add_budget(self, budget, user_id):
         cursor = self.conn.cursor()

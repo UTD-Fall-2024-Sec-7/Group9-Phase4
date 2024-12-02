@@ -41,8 +41,13 @@ class TransactionController:
         status = self.db_manager.delete_transaction(transaction_id, user_id)
         return status
 
-    def filter_transaction(self, filter_type, user_id):
-        self.db_manager.filter_transaction(filter_type, user_id)
+    def edit_transaction(self, transaction_id, type, amount, description, tag, user_id):
+        transaction = Transaction(transaction_id=transaction_id, type=type, amount=amount, description=description, tag=tag)
+        status = self.db_manager.edit_transaction(transaction, user_id)
+        return status
+
+    # def filter_transaction(self, filter_type, user_id):
+    #     self.db_manager.filter_transaction(filter_type, user_id)
 
 
 class BudgetController:

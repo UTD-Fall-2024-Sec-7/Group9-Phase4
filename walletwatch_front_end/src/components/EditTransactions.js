@@ -29,18 +29,18 @@ function EditTransaction() {
             return;
         }
 
-        // Create new transaction
         try {
-            const response = await fetch('/api/transactions', {
-                method: 'POST',
+            const response = await fetch(`/api/transactions/${transaction.id}`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    //name,
                     type,
-                    amount,
+                    amount: parseFloat(amount),
                     description,
-                    tag,
+                    tag
                 }),
             });
 
@@ -50,25 +50,55 @@ function EditTransaction() {
                 alert(data.error);
                 return;
             }
-        } catch (error) {
-            console.error('Error adding transaction:', error);
-            alert('Failed to add transaction. Please try again.');
-        }
-
-        // Delete old transaction if it's available
-        try {
-            const response = await fetch(`/api/transactions/${transaction.id}`, {
-                method: 'DELETE',
-            });
-            if (!response.ok) {
-                throw new Error(`Failed to delete transaction ${transaction.id}`);
-            }
+            console.log(data);
+            //console.log("Transaction updated successfully:", data);
             navigate('/transactions');
         } catch (error) {
-            console.error('Error deleting transaction:', error);
-            alert('Failed to delete transaction. Please try again.');
+            console.error('Error updating transaction:', error);
+            alert('Failed to edit transaction. Please try again.');
         }
     };
+
+        // Create new transaction
+    //     try {
+    //         const response = await fetch('/api/transactions', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //                 type,
+    //                 amount,
+    //                 description,
+    //                 tag,
+    //             }),
+    //         });
+    //
+    //         const data = await response.json();
+    //
+    //         if (!response.ok) {
+    //             alert(data.error);
+    //             return;
+    //         }
+    //     } catch (error) {
+    //         console.error('Error adding transaction:', error);
+    //         alert('Failed to add transaction. Please try again.');
+    //     }
+    //
+    //     // Delete old transaction if it's available
+    //     try {
+    //         const response = await fetch(`/api/transactions/${transaction.id}`, {
+    //             method: 'DELETE',
+    //         });
+    //         if (!response.ok) {
+    //             throw new Error(`Failed to delete transaction ${transaction.id}`);
+    //         }
+    //         navigate('/transactions');
+    //     } catch (error) {
+    //         console.error('Error deleting transaction:', error);
+    //         alert('Failed to delete transaction. Please try again.');
+    //     }
+    // };
 
     return (
         <div className="EditTransaction">

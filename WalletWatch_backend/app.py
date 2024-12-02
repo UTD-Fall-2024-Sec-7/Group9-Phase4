@@ -187,14 +187,30 @@ def delete_transaction(transaction_id):
         return jsonify({'error': 'Transaction deletion FAILED'}), 404
 
 
-@app.route('/api/filterTransactions/<filer_type>', methods=['GET'])
-def filter_transaction(filter_type):
+@app.route('/api/transactions/<int:transaction_id>', methods=['PUT'])
+def edit_transaction(transaction_id):
     user_id = session.get('user_id')
     if not user_id:
         return jsonify({"error": "Unauthorized"}), 401
 
-    t_controller.filter_transaction(filter_type, user_id)
-    return jsonify({'message': 'Transaction filtered successfully!'}), 200
+    type = request.json['type']
+    amount = float(request.json['amount'])
+    description = request.json['description']
+    tag = request.json['tag']
+
+    if t_controller.edit_transaction(transaction_id, type, amount, description, tag, user_id):
+        return jsonify({'message': 'Budget updated successfully!'}), 200
+    else:
+        return jsonify({'error': 'Budget update FAILED'}), 404
+
+# @app.route('/api/filterTransactions/<filer_type>', methods=['GET'])
+# def filter_transaction(filter_type):
+#     user_id = session.get('user_id')
+#     if not user_id:
+#         return jsonify({"error": "Unauthorized"}), 401
+#
+#     t_controller.filter_transaction(filter_type, user_id)
+#     return jsonify({'message': 'Transaction filtered successfully!'}), 200
 
 
 @app.route('/api/budgets', methods=['GET'])

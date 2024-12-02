@@ -36,7 +36,7 @@ const Transactions = () => {
                 throw new Error('Failed to fetch transactions');
             }
             const data = await response.json();
-            console.log("data: ",data);
+            //console.log("data: ",data);
             setTransactions(data);
             resetFilters(data);
         } catch (error) {
