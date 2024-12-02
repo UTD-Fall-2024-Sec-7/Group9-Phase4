@@ -16,12 +16,11 @@ function EditBudget()
     const location = useLocation();
     const navigate = useNavigate();
     const budget = location.state?.budget || null;
-    console.log(budget.id);
 
    // const [name, setName] = useState(budget? budget.name : '');
-    const [budgetLimit, setBudgetLimit] = useState(budget? budget.budgetLimit : '');
-    const [type, setType] = useState(budget? budget.type : '');
-    const [tag, setTag] = useState(budget? budget.tag : ''); 
+    const [budgetLimit, setBudgetLimit] = useState(budget ? budget.budgetLimit : '');
+    const [type, setType] = useState(budget ? budget.type : '');
+    const [tag, setTag] = useState(budget ? budget.tag : '');
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -177,9 +176,18 @@ return(
                             <MenuItem value="subscriptions">Subscriptions</MenuItem>
                         </Select>
                     </FormControl>
-          <Button style ={{float:'right', color: 'white', backgroundColor:'black', height:30, width:200}}>
-                <p>Submit</p>
-            </Button>
+          <Button
+              type="submit"
+              style ={{
+                  float:'right',
+                  color: 'white',
+                  backgroundColor:'black',
+                  height:30,
+                  width:200
+              }}
+          >
+            Submit
+          </Button>
         </Stack>
   
  <br></br>  
