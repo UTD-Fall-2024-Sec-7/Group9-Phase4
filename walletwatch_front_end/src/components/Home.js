@@ -37,7 +37,7 @@ function Home() {
                 flexDirection: 'column',
                 alignItems: 'center',
                 padding: '60px 20px',
-                backgroundColor: 'whitesmoke'
+                backgroundColor: 'white'
             }}>
                 <h2 style={{
                     fontFamily: 'Sans-serif',
