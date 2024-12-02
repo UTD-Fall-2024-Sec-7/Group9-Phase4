@@ -75,18 +75,27 @@ function DeleteBudget() {
 
     return (
         <div className="DeleteBudget">
-            <header className="header">
-                <Stack direction="row" spacing={65} sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}>
-                  <Link to="/Help">  <Button>
-                        <HelpIcon style={{color: 'black'}} />
-                    </Button></Link>
+           <header className="header">
+                <Stack
+                    direction="row"
+                    sx={{
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        padding: "0 5px",
+                        maxWidth: "1400px",
+                        margin: "0 auto",
+                        width: "100%",
+                    }}
+                >
+                    <Link to="/Help">
+                        <Button>
+                            <HelpIcon style={{color: 'black'}} />
+                        </Button>
+                    </Link>
                     <h1>WalletWatch</h1>
                     <Link to="/dashboard">
-                        <Button style={{color: 'white', backgroundColor:'black', height:30}}>
-                            Home
+                        <Button style={{color: 'white', backgroundColor: 'black', height: 30}}>
+                            <p>Home</p>
                         </Button>
                     </Link>
                 </Stack>

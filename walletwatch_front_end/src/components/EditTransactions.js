@@ -58,60 +58,28 @@ function EditTransaction() {
             alert('Failed to edit transaction. Please try again.');
         }
     };
-
-        // Create new transaction
-    //     try {
-    //         const response = await fetch('/api/transactions', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({
-    //                 type,
-    //                 amount,
-    //                 description,
-    //                 tag,
-    //             }),
-    //         });
-    //
-    //         const data = await response.json();
-    //
-    //         if (!response.ok) {
-    //             alert(data.error);
-    //             return;
-    //         }
-    //     } catch (error) {
-    //         console.error('Error adding transaction:', error);
-    //         alert('Failed to add transaction. Please try again.');
-    //     }
-    //
-    //     // Delete old transaction if it's available
-    //     try {
-    //         const response = await fetch(`/api/transactions/${transaction.id}`, {
-    //             method: 'DELETE',
-    //         });
-    //         if (!response.ok) {
-    //             throw new Error(`Failed to delete transaction ${transaction.id}`);
-    //         }
-    //         navigate('/transactions');
-    //     } catch (error) {
-    //         console.error('Error deleting transaction:', error);
-    //         alert('Failed to delete transaction. Please try again.');
-    //     }
-    // };
-
     return (
         <div className="EditTransaction">
             <header className="header">
-                <Stack direction="row" spacing={65} sx={{ justifyContent: "center", alignItems: "center" }}>
-                    <Link to="/help">
+                <Stack
+                    direction="row"
+                    sx={{
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        padding: "0 5px",
+                        maxWidth: "1400px",
+                        margin: "0 auto",
+                        width: "100%",
+                    }}
+                >
+                    <Link to="/Help">
                         <Button>
-                            <HelpIcon style={{ color: 'black' }} />
+                            <HelpIcon style={{color: 'black'}} />
                         </Button>
                     </Link>
                     <h1>WalletWatch</h1>
                     <Link to="/dashboard">
-                        <Button style={{ color: 'white', backgroundColor: 'black', height: 30 }}>
+                        <Button style={{color: 'white', backgroundColor: 'black', height: 30}}>
                             <p>Home</p>
                         </Button>
                     </Link>
@@ -189,23 +157,25 @@ function EditTransaction() {
                 </Stack>
                 <br />
             </form>
-            <footer className="footer">
-                <Stack direction="row" spacing={50} sx={{ justifyContent: "center", alignItems: "center" }}>
-                    <Link to="/transactions">
-                        <Button style={{ color: 'white', backgroundColor: 'black', height: 30, width: 200 }}>
-                            View Transactions
-                        </Button>
-                    </Link>
-                    <Link to="/viewBudgets">
-                        <Button style={{ color: 'white', backgroundColor: 'black', height: 30, width: 200 }}>
-                            View Budgets
-                        </Button>
-                    </Link>
-                    <Link to="/settings">
-                        <Button style={{ color: 'white', backgroundColor: 'black', height: 30, width: 200 }}>
-                            Settings
-                        </Button>
-                    </Link>
+            <footer classname = "footer">
+                <Stack direction="row" sx={{
+                   justifyContent: "space-between",
+                   alignItems: "center",
+                   padding: "0 5px",
+                    maxWidth: "1400px",
+                    margin: "0 auto",
+                   width: "100%",
+                }}>
+                    
+                    <Link to="/transactions"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>View Transactions</p>
+                    </Button></Link>
+                    <Link to="/viewBudgets"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>View Budgets</p>
+                    </Button></Link>
+                    <Link to="/settings"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>Settings</p>
+                    </Button></Link>
                 </Stack>
             </footer>
         </div>

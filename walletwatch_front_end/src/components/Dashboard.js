@@ -32,7 +32,7 @@ function Dashboard() {
                     sx={{
                         justifyContent: "space-between",
                         alignItems: "center",
-                        padding: "0 10px",
+                        padding: "0 5px",
                         maxWidth: "1400px",
                         margin: "0 auto",
                         width: "100%",
@@ -60,10 +60,15 @@ function Dashboard() {
                 <TransactionGraph/>
             </div>
             <footer classname = "footer">
-                <Stack direction="row" spacing={50} sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
+                <Stack direction="row" sx={{
+                   justifyContent: "space-between",
+                   alignItems: "center",
+                   padding: "0 5px",
+                    maxWidth: "1400px",
+                    margin: "0 auto",
+                   width: "100%",
                 }}>
+                    
                     <Link to="/transactions"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
                         <p>View Transactions</p>
                     </Button></Link>

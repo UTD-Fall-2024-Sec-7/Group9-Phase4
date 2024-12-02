@@ -100,19 +100,26 @@ function Edit_Profile() {
                     />
                 </Stack>
                 <footer classname = "footer">
-                    <Stack direction="row" spacing={150} sx={{
-                        justifyContent: "center",
-                        alignItems: "center"
-                    }}>
-
-                        <Link to="/Dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:50}}>
-                            <p>Back</p>
-                        </Button></Link>
-                        <Link to="/Dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:50}}>
-                            <p>Submit</p>
-                        </Button></Link>
-                    </Stack>
-                </footer>
+                <Stack direction="row" sx={{
+                   justifyContent: "space-between",
+                   alignItems: "center",
+                   padding: "0 5px",
+                    maxWidth: "1400px",
+                    margin: "0 auto",
+                   width: "100%",
+                }}>
+                    
+                    <Link to="/transactions"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>View Transactions</p>
+                    </Button></Link>
+                    <Link to="/viewBudgets"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>View Budgets</p>
+                    </Button></Link>
+                    <Link to="/settings"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>Settings</p>
+                    </Button></Link>
+                </Stack>
+            </footer>
             </form>
         </div>
     );

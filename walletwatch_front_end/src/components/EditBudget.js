@@ -104,21 +104,31 @@ function EditBudget()
 
 return(  
     <div classname = "EditBudget">
-        <header classname = "header" >
-        <Stack direction="row" spacing={65} sx={{
-                justifyContent: "center",
-                alignItems: "center",
-            }}>
-                <Link to="/Help"> <Button>
-                <HelpIcon style ={{color: 'black'}}></HelpIcon>
-            </Button></Link>
-
-            <h1> WalletWatch</h1>
-        <Link to="/dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:30}}>
-        <p>Home</p>
-        </Button></Link>
-            </Stack>
-        </header>
+      <header className="header">
+                <Stack
+                    direction="row"
+                    sx={{
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        padding: "0 5px",
+                        maxWidth: "1400px",
+                        margin: "0 auto",
+                        width: "100%",
+                    }}
+                >
+                    <Link to="/Help">
+                        <Button>
+                            <HelpIcon style={{color: 'black'}} />
+                        </Button>
+                    </Link>
+                    <h1>WalletWatch</h1>
+                    <Link to="/dashboard">
+                        <Button style={{color: 'white', backgroundColor: 'black', height: 30}}>
+                            <p>Home</p>
+                        </Button>
+                    </Link>
+                </Stack>
+            </header>
         <h2> Edit Budget</h2>
         <form onSubmit={handleSubmit}>
             <Stack spacing={2} sx={{
@@ -192,22 +202,27 @@ return(
   
  <br></br>  
  </form>
-<footer classname = "footer">
-     <Stack direction="row" spacing={50} sx={{
-        justifyContent: "center",
-        alignItems: "center",
-    }}>
-        <Link to="/transactions"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
-                <p>View Transactions</p>
-            </Button></Link> 
-        <Link to="/viewBudgets"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
-                <p>View Budgets</p>
-            </Button></Link>
-        <Link to="/settings"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
-                <p>Settings</p>
-            </Button></Link> 
-     </Stack>
-</footer>
+ <footer classname = "footer">
+        <Stack direction="row" sx={{
+                   justifyContent: "space-between",
+                   alignItems: "center",
+                   padding: "0 5px",
+                    maxWidth: "1400px",
+                    margin: "0 auto",
+                   width: "100%",
+                }}>
+                    
+                    <Link to="/transactions"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>View Transactions</p>
+                    </Button></Link>
+                    <Link to="/viewBudgets"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>View Budgets</p>
+                    </Button></Link>
+                    <Link to="/settings"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>Settings</p>
+                    </Button></Link>
+                </Stack>
+            </footer>
 </div>
 );
 }

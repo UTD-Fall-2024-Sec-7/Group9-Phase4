@@ -95,7 +95,7 @@ function CreateAccount() {
                     />
                 </Stack>
                 <footer className="footer">
-                    <Stack direction="row" spacing={150} sx={{
+                    <Stack direction="row" sx={{
                         justifyContent: "center",
                         alignItems: "center"
                     }}>

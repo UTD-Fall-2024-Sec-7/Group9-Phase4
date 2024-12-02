@@ -11,17 +11,31 @@ const FAQ = () => {
 
     return (
         <div className="help-page">
-            <header classname = "header" >
-            <Stack direction="row" spacing={65} sx={{justifyContent: "center", alignItems: "center",}}>
-            <Link to="/Help"><Button>
-            <HelpIcon style ={{color: 'black'}}></HelpIcon>
-            </Button></Link>
-            <h1> WalletWatch</h1>
-        <Link to="/dashboard"><Button style ={{color: 'white', backgroundColor:'black', height:30}}>
-        <p>Home</p>
-        </Button></Link>
-        </Stack>
-        </header>
+          <header className="header">
+                <Stack
+                    direction="row"
+                    sx={{
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        padding: "0 5px",
+                        maxWidth: "1400px",
+                        margin: "0 auto",
+                        width: "100%",
+                    }}
+                >
+                    <Link to="/Help">
+                        <Button>
+                            <HelpIcon style={{color: 'black'}} />
+                        </Button>
+                    </Link>
+                    <h1>WalletWatch</h1>
+                    <Link to="/dashboard">
+                        <Button style={{color: 'white', backgroundColor: 'black', height: 30}}>
+                            <p>Home</p>
+                        </Button>
+                    </Link>
+                </Stack>
+            </header>
             {/* Page content */}
             <h1 style={{ marginLeft: '50px' }}>FAQ</h1>
             <main style={{ fontFamily: 'sans-serif' }}>
@@ -30,22 +44,27 @@ const FAQ = () => {
                 <h2 style={{ marginLeft: '50px' }}>Q: How can I view my past spending transactions?</h2>
                 <h2 style={{ marginLeft: '100px' }}>A: Use the View Transactions page to view spending over weeks, months, or years. Tags allow you to categorically view your transactions and analyze how much you're spending. </h2>
             </main>
-    <footer classname = "footer">
-   <Stack direction="row" spacing={50} sx={{
-    justifyContent: "center",
-    alignItems: "center",
-  }}>
- <Link to="/transactions"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
-        <p>View Transactions</p>
-     </Button></Link> 
-     <Link to="/viewBudgets"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
-        <p>View Budgets</p>
-     </Button></Link>
-     <Link to="/settings"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
-        <p>Settings</p>
-     </Button></Link> 
-     </Stack>
-     </footer>
+            <footer classname = "footer">
+                <Stack direction="row" sx={{
+                   justifyContent: "space-between",
+                   alignItems: "center",
+                   padding: "0 5px",
+                    maxWidth: "1400px",
+                    margin: "0 auto",
+                   width: "100%",
+                }}>
+                    
+                    <Link to="/transactions"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>View Transactions</p>
+                    </Button></Link>
+                    <Link to="/viewBudgets"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>View Budgets</p>
+                    </Button></Link>
+                    <Link to="/settings"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>Settings</p>
+                    </Button></Link>
+                </Stack>
+            </footer>
         </div>
     );
 };

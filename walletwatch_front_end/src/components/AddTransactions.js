@@ -50,19 +50,26 @@ function AddTransaction() {
 
     return (
         <div className="AddTransaction">
-            <header className="header">
-                <Stack direction="row" spacing={65} sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}>
-                    <Link to="/help">
-                    <Button>
-                        <HelpIcon style={{ color: 'black' }} />
-                    </Button>
+           <header className="header">
+                <Stack
+                    direction="row"
+                    sx={{
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        padding: "0 5px",
+                        maxWidth: "1400px",
+                        margin: "0 auto",
+                        width: "100%",
+                    }}
+                >
+                    <Link to="/Help">
+                        <Button>
+                            <HelpIcon style={{color: 'black'}} />
+                        </Button>
                     </Link>
                     <h1>WalletWatch</h1>
                     <Link to="/dashboard">
-                        <Button style={{ color: 'white', backgroundColor: 'black', height: 30 }}>
+                        <Button style={{color: 'white', backgroundColor: 'black', height: 30}}>
                             <p>Home</p>
                         </Button>
                     </Link>
@@ -144,26 +151,25 @@ function AddTransaction() {
                 </Stack>
                 <br />
             </form>
-            <footer className="footer">
-            <Stack direction="row" spacing={50} sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
+            <footer classname = "footer">
+                <Stack direction="row" sx={{
+                   justifyContent: "space-between",
+                   alignItems: "center",
+                   padding: "0 5px",
+                    maxWidth: "1400px",
+                    margin: "0 auto",
+                   width: "100%",
                 }}>
-                    <Link to="/transactions">
-                        <Button style={{ color: 'white', backgroundColor: 'black', height: 30, width: 200 }}>
-                            View Transactions
-                        </Button>
-                    </Link>
-                    <Link to="/viewBudgets">
-                        <Button style={{ color: 'white', backgroundColor: 'black', height: 30, width: 200 }}>
-                            View Budgets
-                        </Button>
-                    </Link>
-                    <Link to="/settings">
-                        <Button style={{ color: 'white', backgroundColor: 'black', height: 30, width: 200 }}>
-                            Settings
-                        </Button>
-                    </Link>
+                    
+                    <Link to="/transactions"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>View Transactions</p>
+                    </Button></Link>
+                    <Link to="/viewBudgets"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>View Budgets</p>
+                    </Button></Link>
+                    <Link to="/settings"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+                        <p>Settings</p>
+                    </Button></Link>
                 </Stack>
             </footer>
         </div>
