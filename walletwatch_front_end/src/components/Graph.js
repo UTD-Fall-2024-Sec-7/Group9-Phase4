@@ -21,31 +21,31 @@ function TransactionGraph() {
             const data = [
                 {
                     id: "Spending",
-                    color: "red",
                     data: []
                 },
                 {
                     id: "Savings",
-                    color: "green",
                     data: []
                 }
             ];
-
             // Filter and group transactions by date
-            transactions
+            // Sort transactions by date in ascending order
+            const sortedTransactions = transactions
                 .filter(t => new Date(t.date) >= lastWeek)
-                .forEach(transaction => {
-                    const point = {
-                        x: new Date(transaction.date).toLocaleDateString(),
-                        y: transaction.amount
-                    };
+                .sort((a, b) => new Date(a.date) - new Date(b.date));
 
-                    if (transaction.type === 'spending') {
-                        data[0].data.push(point);
-                    } else {
-                        data[1].data.push(point);
-                    }
-                });
+            sortedTransactions.forEach(transaction => {
+                const point = {
+                    x: new Date(transaction.date).toLocaleDateString(),
+                    y: transaction.amount
+                };
+
+                if (transaction.type === 'spending') {
+                    data[0].data.push(point);
+                } else {
+                    data[1].data.push(point);
+                }
+            });
 
             setGraphData(data);
         } catch (error) {
@@ -54,21 +54,43 @@ function TransactionGraph() {
     };
 
     return (
-        <div style={{ height: '350px' }}>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+        }}>
+        <div style={{ height: '350px', width: '1000px', fontWeight: 'bold'}}>
             <ResponsiveLine
                 data={graphData}
                 margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+                colors={['#ff0000', '#2e7d32']} // Set explicit colors: red for spending, green for savings
+                theme={{
+                    axis: {
+                        ticks: {
+                            text: {
+                                fill: '#000000',
+                                fontSize: 12,
+                            }
+                        },
+                        legend: {
+                            text: {
+                                fill: '#000000',
+                                fontSize: 14,
+                            }
+                        }
+                    },
+                    legends: {
+                        text: {
+                            fill: '#000000',
+                            fontSize: 12,
+                        }
+                    }
+                }}
                 xScale={{ type: 'point' }}
                 yScale={{ type: 'linear', min: 'auto', max: 'auto' }}
                 axisTop={null}
                 axisRight={null}
-                axisBottom={{
-                    tickSize: 5,
-                    tickRotation: -45,
-                    legend: 'Date',
-                    legendOffset: 36,
-                    legendPosition: 'middle'
-                }}
                 axisLeft={{
                     tickSize: 5,
                     tickRotation: 0,
@@ -89,7 +111,7 @@ function TransactionGraph() {
                         translateX: 100,
                         translateY: 0,
                         itemsSpacing: 0,
-                        itemDirection: 'left-to-right',
+                        itemDirection: 'right-to-left',
                         itemWidth: 80,
                         itemHeight: 20,
                         symbolSize: 12,
@@ -98,6 +120,7 @@ function TransactionGraph() {
                 ]}
             />
         </div>
+    </div>
     );
 }
 
