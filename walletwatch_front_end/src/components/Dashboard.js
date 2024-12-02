@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import './Home.css';
 import HelpIcon from '@mui/icons-material/Help';
 import Stack from '@mui/material/Stack';
-
+import TransactionGraph from './Graph.js';
 
 function Dashboard() {
     const [user, setUser] = useState([]);
@@ -52,9 +52,13 @@ function Dashboard() {
                 </Stack>
             </header>
             <h2 style={{ textAlign: 'center', fontFamily: 'Sans-serif' }}> Welcome {user.firstName}!</h2>
-            <p style={{ textAlign: 'center' }}>
-                <h3 style={{textAlign:'center', fontFamily: 'Sans-serif'}}> What would you like to do today?</h3>
-            </p>
+            {/*<p style={{ textAlign: 'center' }}>*/}
+            {/*    <h3 style={{textAlign:'center', fontFamily: 'Sans-serif'}}> What would you like to do today?</h3>*/}
+            {/*</p>*/}
+            <div style={{textAlign: 'center', fontFamily: 'Sans-serif'}}>
+                <h4>Weekly Transaction Overview</h4>
+                <TransactionGraph/>
+            </div>
             <footer classname = "footer">
                 <Stack direction="row" spacing={50} sx={{
                     justifyContent: "center",
