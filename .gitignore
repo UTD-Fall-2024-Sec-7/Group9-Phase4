@@ -1,0 +1,6 @@
+/node_modules/
+WalletWatch_backend/wallet_watch.db
+/.idea/
+**/node_modules/
+/WalletWatch_backend/.pytest_cache/
+/WalletWatch_backend/Graph.py

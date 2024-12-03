@@ -1,0 +1,22 @@
+header{
+    background-color: mediumseagreen;
+    padding: 40px 40px;
+    color:white;
+    font-size: 20px;
+    font-family: monospace;
+}
+button{
+    background-color: black;
+  color: white;
+ border: none;
+
+}
+.helpButton{ border-radius: 200%;
+    padding: 8px;
+    text-align: left;
+}
+footer{
+    background-color: mediumseagreen;
+    padding: 40px 40px;
+    color:white;
+}
