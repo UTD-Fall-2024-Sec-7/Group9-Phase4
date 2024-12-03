@@ -74,9 +74,9 @@ def login():
     user = a_controller.get_user(email)
 
     if user is None:
-        return jsonify({'error': 'Email not found'}), 401
+        return jsonify({'error': 'Email not found. Please create an account.'}), 401
     if not check_password_hash(user[2], password):
-        return jsonify({'error': 'Incorrect password'}), 401
+        return jsonify({'error': 'Incorrect password.'}), 401
 
     session['user_id'] = user[0]
     db_manager.create_user_tables(user[0])
@@ -164,12 +164,14 @@ def add_transaction():
     description = request.json['description']
     tag = request.json['tag']
 
-    if not transaction_type or amount <= 0 or not tag:
+    if not transaction_type or not tag:
         return jsonify({'error': 'Please fill in all fields correctly'}), 400
-    elif amount > 9999999999999999:
-        return jsonify({'error': 'Amount exceeds 16-digit limit'}), 400
+    if amount <= 0:
+        return jsonify({'error': 'Amount should have a value greater than zero'}), 400
+    elif amount > 999999999:
+        return jsonify({'error': 'Amount cannot exceed $999,999,999'}), 400
     elif len(description) > 100:
-        return jsonify({'error': 'Description exceeds 100 characters'}), 400
+        return jsonify({'error': 'Description cannot exceed 100 characters'}), 400
     else:
         transaction_id = t_controller.add_transaction(transaction_type, amount, description, tag, user_id)
         return jsonify({'message': 'Transaction added successfully!', 'id': transaction_id}), 201
@@ -247,14 +249,20 @@ def add_budget():
     budget_limit = float(request.json['budgetLimit'])
     tag = request.json['tag']
 
-    if not name or budget_limit <= 0 or not tag:
+    if not name or not tag:
         return jsonify({'error': 'Please fill in all fields correctly'}), 400
+    if budget_limit <= 0:
+        return jsonify({'error': 'Budget should have a value greater than zero'}), 400
+    if len(name) > 50:
+        return jsonify({'error': 'Name cannot exceed 50 characters'}), 400
+    if budget_limit > 999999999:
+        return jsonify({'error': 'Budget cannot exceed $999,999,999'}), 400
 
     budget_id = b_controller.add_budget(budget_type, name, budget_limit, tag, user_id)
     if not budget_id:
         return jsonify({'error': f'Budget with the tag {tag} already exists'}), 409
 
-    return jsonify({'message': 'Budget added successfully!', 'id': budget_id}), 201
+    return jsonify({'message': 'Budget added successfully!'}), 201
 
 
 @app.route('/api/budgets/<int:budget_id>', methods=['PUT'])

@@ -116,7 +116,7 @@ class DatabaseManager:
             VALUES (?, ?, ?, ?, ?)
             ''', (budget.name, budget.type, budget.budgetLimit, budget.budgetLimit, budget.tag))
             self.conn.commit()
-            return cursor.lastrowid
+            return cursor.rowcount > 0
 
         except sqlite3.IntegrityError:
             return False
@@ -133,7 +133,12 @@ class DatabaseManager:
 
     def delete_budget(self, budget_id, user_id):
         cursor = self.conn.cursor()
-        cursor.execute(f'DELETE FROM budgets_{user_id} WHERE id = ?', (budget_id,))
+        if budget_id == 0:
+            cursor.execute(f'DELETE FROM budgets_{user_id}')  # Only used for testing purposes
+            print("WARN: All budgets permanently DELETED")
+        else:
+            cursor.execute(f'DELETE FROM budgets_{user_id} WHERE id = ?', (budget_id,))
+
         self.conn.commit()
         return cursor.rowcount > 0
 

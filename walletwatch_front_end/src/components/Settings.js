@@ -6,9 +6,25 @@ import './Home.css';
 import HelpIcon from '@mui/icons-material/Help';
 import Stack from '@mui/material/Stack';
 
-
-const Settings = () => {
+function Settings() {
     const navigate = useNavigate();
+
+    const logoutUser = async (e) => {
+        try {
+            const response = await fetch('/api/logout')
+            const data = await response.json();
+            if (!response.ok) {
+                alert(data.error);
+                return;
+            }
+            sessionStorage.clear(); // Clear session storage
+            console.log(data);
+            navigate('/');
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred during logout. Please try again.');
+        }
+    };
 
     return (
         <div classname = "settings">
@@ -46,9 +62,11 @@ const Settings = () => {
             <Link to="/edit_profile"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
             <p>Edit Profile</p>
             </Button></Link>
-            <Link to="/"><Button style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
+            <Button
+                onClick={logoutUser}
+                style ={{color: 'white', backgroundColor:'black', height:30, width:200}}>
             <p>Log Out</p>
-            </Button></Link> 
+            </Button>
             </Stack>
 
             <footer classname = "footer">
@@ -74,6 +92,6 @@ const Settings = () => {
             </footer>
         </div>
     );
-};
+}
 
 export default Settings;
