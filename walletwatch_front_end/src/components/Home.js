@@ -9,29 +9,26 @@ import Stack from '@mui/material/Stack';
 function Home() {
     return (
         <div className="Home">
-         <header className="header">
+            <header className="header">
                 <Stack
                     direction="row"
                     sx={{
                         justifyContent: "space-between",
                         alignItems: "center",
-                        padding: "0 5px",
+                        padding: "0 10px",
                         maxWidth: "1400px",
                         margin: "0 auto",
                         width: "100%",
                     }}
                 >
-                    <Link to="/Help">
-                        <Button>
-                            <HelpIcon style={{color: 'black'}} />
-                        </Button>
-                    </Link>
-                    <h1>WalletWatch</h1>
-                    <Link to="/dashboard">
-                        <Button style={{color: 'white', backgroundColor: 'black', height: 30}}>
-                            <p>Home</p>
-                        </Button>
-                    </Link>
+                    <Link to="/Help"><Button>
+                        <HelpIcon style={{color: 'black'}}></HelpIcon>
+                    </Button></Link>
+
+                    <h1> WalletWatch</h1>
+                    <Link to="/login"><Button style={{color: 'white', backgroundColor: 'black', height: 30}}>
+                        <p>Login</p>
+                    </Button></Link>
                 </Stack>
             </header>
 
